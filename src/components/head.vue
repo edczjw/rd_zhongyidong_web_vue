@@ -153,7 +153,7 @@ export default {
 
   width: 100%;
   height: 50px;
-  background: rgb(161, 123, 129);
+  background: rgb(94, 86, 131);
   /* border-bottom: 1px solid rgb(174, 230, 225); */
 }
 
@@ -165,7 +165,8 @@ p {
   float: left;
   height: 50px;
   text-indent: 20px;
-  font-size: 20px;
+  font-family: '宋体';
+  font-size: 28px;
   padding: 2px 2px;
   font-weight: bolder;
   color: #fff;

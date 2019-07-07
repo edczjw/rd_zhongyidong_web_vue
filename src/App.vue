@@ -123,7 +123,7 @@ body {
 
 //搜索菜单输入框部分
 .el-form-item__content {
-  margin-left: 110px !important;
+  margin-left: 60px !important;
 }
 
 //搜索和重置部分

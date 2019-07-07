@@ -6,7 +6,7 @@
         <el-menu
           default-active="1"
           class="el-menu-vertical-demo"
-          background-color="rgb(161, 123, 129)"
+          background-color="rgb(85, 139, 160)"
           text-color="#fff"
           active-text-color="#EEDC82"
           unique-opened
@@ -143,7 +143,7 @@ export default {
   /* important的意义在于优先于它内部定义的样式 */
   // margin: -0.9px !important;
   border-color: rgb(211, 212, 212);
-  background-color: rgb(161, 123, 129);
+  background: rgb(85, 139, 160);
   border-right: none;
   /* background: #108dc6; */
   /deep/ .el-submenu__title i {
@@ -157,12 +157,13 @@ export default {
 /* 菜单 */
 .side {
   position: fixed;
+  font-family: '宋体';
 
   width: 199px;
   height: 100%;
   transition: all 0.5s;
   /* background-color: rgb(211, 212, 212); */
-  background: rgb(161, 123, 129);
+  background: rgb(85, 139, 160);
   // border: 1px solid rgb(211, 212, 212);
 }
 
@@ -170,7 +171,7 @@ export default {
   width: 64px;
   transition: all 0.5s;
   /* background-color: rgb(211, 212, 212); */
-  background: rgb(161, 123, 129);
+  background: rgb(85, 139, 160);
 }
 
 .el-menu-item-group {

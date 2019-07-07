@@ -3,9 +3,7 @@
   <div class="wrapper-inner" id="app">
     <!-- 返回顶部 -->
     <div id="dtop" class="gotop" title="返回顶部" @click="movetop">
-      <svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-ico-top" />
-      </svg>
+      返回顶部
       <div class="bg"></div>
       <div class="circle"></div>
     </div>
@@ -100,7 +98,7 @@ export default {
 //右边部分整个大页面
 .main-ten {
   margin-left: 200px;
-  padding: 25px 25px;
+  padding:25px 80px;
   transition: all 0.5s;
 }
 
@@ -108,7 +106,7 @@ export default {
 .container-width {
   transition: all 0.5s;
   margin-left: 70px;
-  padding: 10px 8px;
+  padding:25px 80px;
 }
 
 .wrapper-inner {
@@ -140,14 +138,17 @@ export default {
   transition: 0.3s;
   -webkit-transition-timing-function: linear; /* Safari and Chrome */
   transition-timing-function: linear;
-
+  width: 60px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
   opacity: 0.4;
-  border-radius: 50%;
+  // border-radius: 100%;
 }
 .bg {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
+  // border-radius: 50%;
   position: absolute;
   top: 0;
   left: 0;

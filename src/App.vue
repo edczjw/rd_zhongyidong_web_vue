@@ -165,6 +165,7 @@ body {
 //右大半部分
 .container-width {
   margin-left: 0;
+  
 }
 
 .xiangqingtitle {
@@ -198,11 +199,13 @@ body {
 .gotop {
   position: fixed;
   z-index: 9999;
-  right: 13px;
-  bottom: 13px;
+  right: 33px;
+  bottom: 33px;
 
   display: none;
-
+  width: 60px;
+  height: 30px;
+  line-height: 30px;
   cursor: pointer;
   -webkit-transition: 0.2s;
   transition: 0.2s;
@@ -211,11 +214,11 @@ body {
 
   opacity: 0.4;
   border: 1px solid blue;
-  border-radius: 50%;
+  // border-radius: 50%;
 }
 
 .gotop:hover {
-  bottom: 18px;
+  bottom: 33px;
 
   opacity: 1;
   border: 2px solid rgb(115, 255, 0);

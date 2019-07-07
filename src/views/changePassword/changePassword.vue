@@ -2,14 +2,14 @@
   <div class="page-change">
     <el-card>
       <h1>修改密码</h1>
-      <el-form :model="passwordForm" :rules="rules" ref="passwordForm">
-        <el-form-item label prop="oldPassword">
+      <el-form :model="passwordForm" :rules="rules" ref="passwordForm" label-width="100px">
+        <el-form-item label="原密码" prop="oldPassword">
           <el-input placeholder="请输入原密码" v-model.trim="passwordForm.oldPassword"></el-input>
         </el-form-item>
-        <el-form-item label prop="newPassword">
+        <el-form-item label="新密码" prop="newPassword">
           <el-input placeholder="请输入新密码" type="password" v-model.trim="passwordForm.newPassword"></el-input>
         </el-form-item>
-        <el-form-item label prop="confirmPassword">
+        <el-form-item label="确认密码" prop="confirmPassword">
           <el-input
             placeholder="请再次输入新密码"
             type="password"
@@ -98,15 +98,17 @@ export default {
 }
 .page-change {
   width: 400px;
-  margin: 100px auto;
+  text-align: center;
+  margin: 80px auto;
   h1 {
     margin-bottom: 30px;
     color:#666;
   }
   .change-button {
-    margin-left: 35%;
+    position: relative;
+    right: -80px;
     button {
-      width: 100px;
+      width: 80px;
     }
   }
 }

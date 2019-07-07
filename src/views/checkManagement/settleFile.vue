@@ -5,7 +5,7 @@
         <el-row>
           <el-col :span="8">
             <el-form-item label="省份" prop="province">
-              <el-input size="mini" v-model.trim="searchform.province" style="width:73%;"></el-input>
+              <el-input size="mini" v-model.trim="searchform.province"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
@@ -22,10 +22,10 @@
           </el-col>
           <el-col :span="8">
             <el-form-item label="文件类型" prop="filetype">
-              <el-input size="mini" v-model.trim="searchform.filetype" style="width:73%;"></el-input>
+              <el-input size="mini" v-model.trim="searchform.filetype"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <el-col :span="8">
             <el-form-item label="生成时间" prop="beginDate">
               <el-date-picker
                 size="mini"
@@ -36,7 +36,7 @@
               ></el-date-picker>
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <el-col :span="8">
             <el-form-item label="至" prop="endDate">
               <el-date-picker
                 size="mini"
@@ -296,10 +296,12 @@ export default {
 </script>
 <style lang='less' scoped>
 /deep/ .el-card {
-  background: rgba(255, 255, 255, 0.1);
+  // background: rgba(255, 255, 255, 0.1);
   /deep/ .el-table tr,
   .el-table th {
     background: rgba(173, 173, 173, 0.3);
+    color: rgb(116, 104, 104);
+    font-family: '苹方';
   }
   /deep/ .el-table--border td,
   .el-table--border th,

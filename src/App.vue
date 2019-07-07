@@ -60,7 +60,9 @@ body {
 
   background: #fff;
 }
-
+.el-input{
+  width: 220px;
+}
 //左侧菜单栏
 .side-container {
   font-size: 14px;

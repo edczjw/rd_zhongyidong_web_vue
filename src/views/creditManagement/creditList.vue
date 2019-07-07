@@ -5,7 +5,7 @@
         <el-row type="flex" class="human-form">
           <el-col :span="8">
             <el-form-item label="姓名" prop="name">
-              <el-input size="mini" v-model.trim="searchform.name" style="width:73%;"></el-input>
+              <el-input size="mini" v-model.trim="searchform.name"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
@@ -233,6 +233,8 @@ export default {
   /deep/ .el-table tr,
   .el-table th {
     background: rgba(173, 173, 173, 0.3);
+    color: rgb(116, 104, 104);
+    font-family: '苹方';
   }
   /deep/ .el-table--border td,
   .el-table--border th,

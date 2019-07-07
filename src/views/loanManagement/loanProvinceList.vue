@@ -190,6 +190,8 @@ export default {
   /deep/ .el-table tr,
   .el-table th {
     background: rgba(173, 173, 173, 0.3);
+    color: rgb(118, 104, 104);
+    font-family: '苹方';
   }
   /deep/ .el-table--border td,
   .el-table--border th,

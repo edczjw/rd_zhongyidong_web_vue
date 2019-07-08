@@ -8,7 +8,7 @@
           class="el-menu-vertical-demo"
           background-color="rgb(85, 139, 160)"
           text-color="#fff"
-          active-text-color="#EEDC82"
+          active-text-color="blue"
           unique-opened
           :collapse="this.$store.state.isLeftHiden"
         >
@@ -157,7 +157,7 @@ export default {
 /* 菜单 */
 .side {
   position: fixed;
-  font-family: '宋体';
+  font-family: '苹方';
 
   width: 199px;
   height: 100%;

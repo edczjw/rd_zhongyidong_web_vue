@@ -153,8 +153,8 @@ export default {
 
   width: 100%;
   height: 50px;
-  background: rgb(94, 86, 131);
-  /* border-bottom: 1px solid rgb(174, 230, 225); */
+  background: rgb(85, 139, 160);
+  border-bottom: 1px solid rgba(44, 49, 51, 0.219);
 }
 
 p {

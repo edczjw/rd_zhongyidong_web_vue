@@ -6,9 +6,9 @@
         <el-menu
           default-active="1"
           class="el-menu-vertical-demo"
-          background-color="rgb(161, 123, 129)"
+          background-color="rgb(214, 147, 157)"
           text-color="#fff"
-          active-text-color="#EEDC82"
+          active-text-color="#c81481"
           unique-opened
           :collapse="this.$store.state.isLeftHiden"
         >
@@ -100,8 +100,6 @@
             </el-menu-item-group>
           </el-submenu>
           <!-- 
-         
-        
           <el-submenu index="5">
             <template slot="title">
               <svg class="icon" aria-hidden="true">
@@ -121,7 +119,6 @@
               </router-link>
             </el-menu-item-group>
           </el-submenu>
-      
           -->
         </el-menu>
       </el-col>
@@ -143,7 +140,7 @@ export default {
   /* important的意义在于优先于它内部定义的样式 */
   // margin: -0.9px !important;
   border-color: rgb(211, 212, 212);
-  background-color: rgb(161, 123, 129);
+  background-color: rgb(214, 147, 157);
   border-right: none;
   /* background: #108dc6; */
   /deep/ .el-submenu__title i {
@@ -151,6 +148,12 @@ export default {
   }
   /deep/ .el-submenu .el-menu-item {
     min-width: 198px;
+  }
+  /deep/ .el-submenu__title:hover {
+    background: rgb(192, 128, 128) !important;
+  }
+  /deep/ .el-menu-item:hover {
+    background: rgb(194, 121, 121) !important;
   }
 }
 
@@ -162,7 +165,7 @@ export default {
   height: 100%;
   transition: all 0.5s;
   /* background-color: rgb(211, 212, 212); */
-  background: rgb(161, 123, 129);
+  background: rgb(214, 147, 157);
   // border: 1px solid rgb(211, 212, 212);
 }
 
@@ -170,7 +173,7 @@ export default {
   width: 64px;
   transition: all 0.5s;
   /* background-color: rgb(211, 212, 212); */
-  background: rgb(161, 123, 129);
+  background: rgb(214, 147, 157);
 }
 
 .el-menu-item-group {

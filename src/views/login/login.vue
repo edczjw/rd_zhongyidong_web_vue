@@ -109,7 +109,7 @@ export default {
         if (valid) {
           this.$axios({
             method: "post",
-            url: this.$store.state.domain + "/manage/user/login",
+            url: this.$store.state.domain + "",
             data: this.loginform
           }).then(
             //成功
@@ -167,6 +167,9 @@ export default {
 </script>
 
 <style lang='less' scoped>
+/deep/ .el-form-item__content {
+  margin-left: 0px;
+}
 /deep/ .el-card {
   background: transparent;
   border-bottom: none;

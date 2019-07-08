@@ -5,7 +5,7 @@
         <el-row type="flex" class="human-form">
           <el-col :span="8">
             <el-form-item label="姓名" prop="name">
-              <el-input size="mini" v-model.trim="searchform.name" style="width:73%;"></el-input>
+              <el-input size="mini" v-model.trim="searchform.name"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
@@ -21,7 +21,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="授信额度生效日期" prop="effDt">
+            <el-form-item label="授信生效日期" prop="effDt">
               <el-date-picker
                 size="mini"
                 v-model="searchform.effDt"
@@ -34,7 +34,7 @@
         </el-row>
         <el-row>
           <el-col :span="8">
-            <el-form-item label="授信额度失效日期" prop="expDt">
+            <el-form-item label="授信失效日期" prop="expDt">
               <el-date-picker
                 size="mini"
                 v-model="searchform.expDt"
@@ -45,7 +45,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="授信锁定到期时间" prop="creditLockTm">
+            <el-form-item label="授信到期时间" prop="creditLockTm">
               <el-date-picker
                 size="mini"
                 v-model="searchform.creditLockTm"
@@ -233,6 +233,8 @@ export default {
   /deep/ .el-table tr,
   .el-table th {
     background: rgba(173, 173, 173, 0.3);
+    color: rgb(116, 104, 104);
+    font-family: '苹方';
   }
   /deep/ .el-table--border td,
   .el-table--border th,

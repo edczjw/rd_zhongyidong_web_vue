@@ -13,6 +13,12 @@ Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.prototype.$store = store
 Vue.prototype.$axios = axios
+
+// 跳转后返回顶部
+router.afterEach((to,from,next) => {
+  window.scrollTo(0,0);
+});
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

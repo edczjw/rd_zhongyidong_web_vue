@@ -60,7 +60,9 @@ body {
 
   background: #fff;
 }
-
+.el-input{
+  width: 220px;
+}
 //左侧菜单栏
 .side-container {
   font-size: 14px;
@@ -123,7 +125,7 @@ body {
 
 //搜索菜单输入框部分
 .el-form-item__content {
-  margin-left: 110px !important;
+  margin-left: 60px !important;
 }
 
 //搜索和重置部分
@@ -163,6 +165,7 @@ body {
 //右大半部分
 .container-width {
   margin-left: 0;
+  
 }
 
 .xiangqingtitle {
@@ -191,16 +194,20 @@ body {
 
   background-color: #f4f8ff;
 }
-
+.el-date-picker__time-header .el-input{
+  width: 100%;
+}
 //返回顶部
 .gotop {
   position: fixed;
   z-index: 9999;
-  right: 13px;
-  bottom: 13px;
+  right: 33px;
+  bottom: 33px;
 
   display: none;
-
+  width: 60px;
+  height: 30px;
+  line-height: 30px;
   cursor: pointer;
   -webkit-transition: 0.2s;
   transition: 0.2s;
@@ -209,11 +216,11 @@ body {
 
   opacity: 0.4;
   border: 1px solid blue;
-  border-radius: 50%;
+  // border-radius: 50%;
 }
 
 .gotop:hover {
-  bottom: 18px;
+  bottom: 33px;
 
   opacity: 1;
   border: 2px solid rgb(115, 255, 0);

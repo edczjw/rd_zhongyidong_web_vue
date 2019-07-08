@@ -331,9 +331,6 @@ export default {
 };
 </script>
 <style lang='less' scoped>
-/deep/ .el-card__body {
-  //   padding: 0px;
-}
 .page-detail {
   h1 {
     font-size: 22px;

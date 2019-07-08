@@ -3,17 +3,17 @@
     <el-card>
       <el-form :model="searchform" ref="searchform" label-width="100px">
         <el-row type="flex" class="human-form">
-          <el-col :span="6">
+          <el-col :span="8">
             <el-form-item label="姓名" prop="name">
               <el-input size="mini" v-model.trim="searchform.name"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <el-col :span="8">
             <el-form-item label="订单编号" prop="orgOrdNo">
               <el-input size="mini" v-model.trim="searchform.orgOrdNo"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <el-col :span="8">
             <el-form-item label="订单状态" prop="status">
               <el-select size="mini" v-model="searchform.status" placeholder="请选择订单状态">
                 <el-option
@@ -27,7 +27,7 @@
           </el-col>
         </el-row>
         <el-row>
-          <el-col :span="6">
+          <el-col :span="8">
             <el-form-item label="订单申请时间" prop="beginDate">
               <el-date-picker
                 size="mini"
@@ -38,7 +38,7 @@
               ></el-date-picker>
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <el-col :span="8">
             <el-form-item label="至" prop="endDate">
               <el-date-picker
                 size="mini"
@@ -233,6 +233,8 @@ export default {
   /deep/ .el-table tr,
   .el-table th {
     background: rgba(173, 173, 173, 0.3);
+    color: rgb(118, 104, 104);
+    font-family: '苹方';
   }
   /deep/ .el-table--border td,
   .el-table--border th,

@@ -1,7 +1,7 @@
 <template>
   <div class="page-human">
     <el-card>
-      <el-form :model="searchform" ref="searchform" label-width="90px">
+      <el-form :model="searchform" ref="searchform" label-width="120px">
         <el-row>
           <el-col :span="8">
             <el-form-item label="省份" prop="province">
@@ -309,6 +309,9 @@ export default {
     .el-table--border.is-scrolling-left
     ~ .el-table__fixed {
     border-right: 1px solid #fff;
+  }
+  .el-form-item__content{
+      margin-left:130px !important;
   }
 }
 .page-human {

@@ -1,7 +1,7 @@
 <template>
   <div class="page-human">
     <el-card>
-      <el-form :model="searchform" ref="searchform" label-width="100px">
+      <el-form :model="searchform" ref="searchform" label-width="130px">
         <el-row type="flex" class="human-form">
           <el-col :span="8">
             <el-form-item label="姓名" prop="name">
@@ -231,6 +231,9 @@ export default {
     .el-table--border.is-scrolling-left
     ~ .el-table__fixed {
     border-right: 1px solid #fff;
+  }
+  .el-form-item__content{
+      margin-left:130px !important;
   }
 }
 .page-human {

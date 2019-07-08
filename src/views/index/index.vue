@@ -98,7 +98,7 @@ export default {
 //右边部分整个大页面
 .main-ten {
   margin-left: 200px;
-  padding:25px 80px;
+  padding:25px 50px;
   transition: all 0.5s;
 }
 
@@ -106,7 +106,7 @@ export default {
 .container-width {
   transition: all 0.5s;
   margin-left: 70px;
-  padding:25px 80px;
+  padding:25px 70px;
 }
 
 .wrapper-inner {

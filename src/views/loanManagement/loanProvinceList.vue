@@ -1,14 +1,14 @@
 <template>
   <div class="page-human">
     <el-card>
-      <el-form :model="searchform" ref="searchform" label-width="130px">
+      <el-form :model="searchform" ref="searchform" label-width="150px">
         <el-row type="flex" class="human-form">
-          <el-col :span="8">
+          <el-col :span="10">
             <el-form-item label="省份" prop="province">
               <el-input size="mini" v-model.trim="searchform.orgOrdNo"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="8">
+          <el-col :span="10">
             <el-form-item label="省份账单开始日期" prop="beginDate">
               <el-date-picker
                 size="mini"
@@ -19,6 +19,8 @@
               ></el-date-picker>
             </el-form-item>
           </el-col>
+        </el-row>
+        <el-row>
           <el-col :span="8">
             <el-form-item label="至" prop="endDate">
               <el-date-picker
@@ -30,8 +32,6 @@
               ></el-date-picker>
             </el-form-item>
           </el-col>
-        </el-row>
-        <el-row>
           <el-col :span="8">
             <el-form-item>
               <el-button size="mini" type="primary" @click="submitForm()">搜索</el-button>
@@ -201,7 +201,7 @@ export default {
     border-right: 1px solid #fff;
   }
   /deep/ .el-form-item__content {
-    margin-left: 130px !important;
+    margin-left: 170px !important;
   }
 }
 .page-human {

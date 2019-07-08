@@ -194,7 +194,9 @@ body {
 
   background-color: #f4f8ff;
 }
-
+.el-date-picker__time-header .el-input{
+  width: 100%;
+}
 //返回顶部
 .gotop {
   position: fixed;

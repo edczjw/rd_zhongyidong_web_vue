@@ -21,7 +21,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="授信额度生效日期" prop="effDt">
+            <el-form-item label="授信生效日期" prop="effDt">
               <el-date-picker
                 size="mini"
                 v-model="searchform.effDt"
@@ -34,7 +34,7 @@
         </el-row>
         <el-row>
           <el-col :span="8">
-            <el-form-item label="授信额度失效日期" prop="expDt">
+            <el-form-item label="授信失效日期" prop="expDt">
               <el-date-picker
                 size="mini"
                 v-model="searchform.expDt"
@@ -45,7 +45,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="授信锁定到期时间" prop="creditLockTm">
+            <el-form-item label="授信到期时间" prop="creditLockTm">
               <el-date-picker
                 size="mini"
                 v-model="searchform.creditLockTm"

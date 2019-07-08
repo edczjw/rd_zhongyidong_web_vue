@@ -8,7 +8,7 @@
           class="el-menu-vertical-demo"
           background-color="rgb(85, 139, 160)"
           text-color="#fff"
-          active-text-color="blue"
+          active-text-color="purple"
           unique-opened
           :collapse="this.$store.state.isLeftHiden"
         >
@@ -140,12 +140,9 @@ export default {
 
 <style scoped  lang="less">
 .el-menu {
-  /* important的意义在于优先于它内部定义的样式 */
-  // margin: -0.9px !important;
   border-color: rgb(211, 212, 212);
   background: rgb(85, 139, 160);
   border-right: none;
-  /* background: #108dc6; */
   /deep/ .el-submenu__title i {
     color: #fff;
   }
@@ -162,15 +159,12 @@ export default {
   width: 199px;
   height: 100%;
   transition: all 0.5s;
-  /* background-color: rgb(211, 212, 212); */
   background: rgb(85, 139, 160);
-  // border: 1px solid rgb(211, 212, 212);
 }
 
 .side-menu {
   width: 64px;
   transition: all 0.5s;
-  /* background-color: rgb(211, 212, 212); */
   background: rgb(85, 139, 160);
 }
 

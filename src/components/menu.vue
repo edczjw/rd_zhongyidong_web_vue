@@ -6,9 +6,15 @@
         <el-menu
           default-active="1"
           class="el-menu-vertical-demo"
+<<<<<<< HEAD
           background-color="rgb(214, 147, 157)"
           text-color="#fff"
           active-text-color="#c81481"
+=======
+          background-color="rgb(85, 139, 160)"
+          text-color="#fff"
+          active-text-color="purple"
+>>>>>>> 0201d4da961526186dabafa704a9860da57ba637
           unique-opened
           :collapse="this.$store.state.isLeftHiden"
         >
@@ -137,12 +143,9 @@ export default {
 
 <style scoped  lang="less">
 .el-menu {
-  /* important的意义在于优先于它内部定义的样式 */
-  // margin: -0.9px !important;
   border-color: rgb(211, 212, 212);
-  background-color: rgb(214, 147, 157);
+  background: rgb(85, 139, 160);
   border-right: none;
-  /* background: #108dc6; */
   /deep/ .el-submenu__title i {
     color: #fff;
   }
@@ -160,20 +163,29 @@ export default {
 /* 菜单 */
 .side {
   position: fixed;
+  font-family: '苹方';
 
   width: 199px;
   height: 100%;
   transition: all 0.5s;
+<<<<<<< HEAD
   /* background-color: rgb(211, 212, 212); */
   background: rgb(214, 147, 157);
   // border: 1px solid rgb(211, 212, 212);
+=======
+  background: rgb(85, 139, 160);
+>>>>>>> 0201d4da961526186dabafa704a9860da57ba637
 }
 
 .side-menu {
   width: 64px;
   transition: all 0.5s;
+<<<<<<< HEAD
   /* background-color: rgb(211, 212, 212); */
   background: rgb(214, 147, 157);
+=======
+  background: rgb(85, 139, 160);
+>>>>>>> 0201d4da961526186dabafa704a9860da57ba637
 }
 
 .el-menu-item-group {

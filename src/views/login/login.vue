@@ -9,12 +9,12 @@
               ref="loginform"
               :model="this.loginform"
               status-icon
-              label-width="65px"
+              label-width="55px"
               class="demo-ruleForm"
             >
               <div class="login-content">
                 <el-form-item label="账号" prop="mobile">
-                  <el-input class="ell" placeholder="请输入手机号" v-model.trim="loginform.mobile">
+                  <el-input size="small" class="ell" placeholder="请输入手机号" v-model.trim="loginform.mobile">
                     <template slot="prepend">
                       <i class="el-icon-edit"></i>
                     </template>
@@ -25,6 +25,7 @@
                 <el-row>
                   <el-form-item label="密码" prop="password">
                     <el-input
+                    size="small" 
                       class="ell"
                       placeholder="请输入密码"
                       type="password"
@@ -177,7 +178,7 @@ export default {
 }
 .login-main {
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 400px;
@@ -231,5 +232,8 @@ h1 {
 }
 .butt1 {
   width: 40%;
+}
+.ell{
+  width: 240px;
 }
 </style>

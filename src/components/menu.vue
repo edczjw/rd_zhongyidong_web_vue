@@ -6,15 +6,9 @@
         <el-menu
           default-active="1"
           class="el-menu-vertical-demo"
-<<<<<<< HEAD
-          background-color="rgb(214, 147, 157)"
-          text-color="#fff"
-          active-text-color="#c81481"
-=======
           background-color="rgb(85, 139, 160)"
           text-color="#fff"
           active-text-color="purple"
->>>>>>> 0201d4da961526186dabafa704a9860da57ba637
           unique-opened
           :collapse="this.$store.state.isLeftHiden"
         >
@@ -49,11 +43,11 @@
               <svg class="icon" aria-hidden="true">
                 <use xlink:href="#icon-dingdanguanli" />
               </svg>
-              <span>订单管理</span>
+              <span>借款管理</span>
             </template>
             <el-menu-item-group>
               <router-link to="/orderManagement/orderList">
-                <el-menu-item index="3-1">订单列表</el-menu-item>
+                <el-menu-item index="3-1">借款列表</el-menu-item>
               </router-link>
             </el-menu-item-group>
           </el-submenu>
@@ -105,27 +99,6 @@
               </router-link>
             </el-menu-item-group>
           </el-submenu>
-          <!-- 
-          <el-submenu index="5">
-            <template slot="title">
-              <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-hetongxinxiguanli"></use>
-              </svg>
-              <span>合同信息</span>
-            </template>
-            <el-menu-item-group>
-              <router-link to="/contractInformation/contractList">
-                <el-menu-item index="5-1">合同列表</el-menu-item>
-              </router-link>
-              <router-link to="/contractInformation/warehouseContract">
-                <el-menu-item index="5-2">在库合约</el-menu-item>
-              </router-link>
-              <router-link to="/contractInformation/settleContract">
-                <el-menu-item index="5-3">结清合约</el-menu-item>
-              </router-link>
-            </el-menu-item-group>
-          </el-submenu>
-          -->
         </el-menu>
       </el-col>
     </el-row>
@@ -163,29 +136,18 @@ export default {
 /* 菜单 */
 .side {
   position: fixed;
-  font-family: '苹方';
+  font-family: "苹方";
 
   width: 199px;
   height: 100%;
   transition: all 0.5s;
-<<<<<<< HEAD
-  /* background-color: rgb(211, 212, 212); */
-  background: rgb(214, 147, 157);
-  // border: 1px solid rgb(211, 212, 212);
-=======
   background: rgb(85, 139, 160);
->>>>>>> 0201d4da961526186dabafa704a9860da57ba637
 }
 
 .side-menu {
   width: 64px;
   transition: all 0.5s;
-<<<<<<< HEAD
-  /* background-color: rgb(211, 212, 212); */
-  background: rgb(214, 147, 157);
-=======
   background: rgb(85, 139, 160);
->>>>>>> 0201d4da961526186dabafa704a9860da57ba637
 }
 
 .el-menu-item-group {

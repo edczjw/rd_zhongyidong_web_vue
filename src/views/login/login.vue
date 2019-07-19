@@ -14,7 +14,12 @@
             >
               <div class="login-content">
                 <el-form-item label="账号" prop="mobile">
-                  <el-input size="small" class="ell" placeholder="请输入手机号" v-model.trim="loginform.mobile">
+                  <el-input
+                    size="small"
+                    class="ell"
+                    placeholder="请输入手机号"
+                    v-model.trim="loginform.mobile"
+                  >
                     <template slot="prepend">
                       <i class="el-icon-edit"></i>
                     </template>
@@ -25,7 +30,7 @@
                 <el-row>
                   <el-form-item label="密码" prop="password">
                     <el-input
-                    size="small" 
+                      size="small"
                       class="ell"
                       placeholder="请输入密码"
                       type="password"
@@ -68,8 +73,8 @@ export default {
 
       // 登录表单
       loginform: {
-        mobile: "",
-        password: ""
+        mobile: "fengkong01",
+        password: "ms002647"
       },
 
       //输入框验证
@@ -102,7 +107,22 @@ export default {
       }
     };
   },
-  mounted() {},
+  mounted() {
+    // const someAsyncThing = function() {
+    //   return new Promise(function(resolve, reject) {
+    //     // 下面一行会报错，因为x没有声明
+    //     resolve(x + 2);
+    //   });
+    // };
+
+    // someAsyncThing()
+    //   .catch(function(error) {
+    //     console.log("oh no", error);
+    //   })
+    //   .then(function() {
+    //     console.log("carry on");
+    //   });
+  },
   methods: {
     //登录
     login(formName) {
@@ -110,7 +130,7 @@ export default {
         if (valid) {
           this.$axios({
             method: "post",
-            url: this.$store.state.domain + "",
+            url: this.$store.state.domain + "/manage/user/login",
             data: this.loginform
           }).then(
             //成功
@@ -233,7 +253,7 @@ h1 {
 .butt1 {
   width: 40%;
 }
-.ell{
+.ell {
   width: 240px;
 }
 </style>

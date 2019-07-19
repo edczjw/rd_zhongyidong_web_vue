@@ -59,9 +59,9 @@ export default {
           dangerouslyUseHTMLString: true, //表示提示的是html片段
           message:
             '<svg class="icon" aria-hidden="true"> <use xlink:href="#icon-jiqiren"></use> </svg> ' +
-            "欢迎登陆您民盛报送系统！",
+            "欢迎登陆您民盛报送系统!",
           type: "success",
-          center: true,
+          center: true
         });
       } else {
         this.$message({
@@ -98,7 +98,7 @@ export default {
 //右边部分整个大页面
 .main-ten {
   margin-left: 200px;
-  padding:25px 50px;
+  padding: 25px 50px;
   transition: all 0.5s;
 }
 
@@ -106,7 +106,7 @@ export default {
 .container-width {
   transition: all 0.5s;
   margin-left: 70px;
-  padding:25px 70px;
+  padding: 25px 70px;
 }
 
 .wrapper-inner {

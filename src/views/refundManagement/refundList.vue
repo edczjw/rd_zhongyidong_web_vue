@@ -13,19 +13,6 @@
               <el-input size="mini" v-model.trim="searchform.name"></el-input>
             </el-form-item>
           </el-col>
-
-          <el-col :span="8">
-            <el-form-item label="还款状态" prop="status">
-              <el-select size="mini" v-model="searchform.status" placeholder="请选择还款状态">
-                <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-                ></el-option>
-              </el-select>
-            </el-form-item>
-          </el-col>
         </el-row>
         <el-row>
           <el-col :span="8">
@@ -83,18 +70,9 @@
         <el-table-column prop="repayPrincipal" label="还款本金（元）" align="center"></el-table-column>
         <el-table-column prop="repayInterest" label="还款利息（元）" align="center"></el-table-column>
         <el-table-column prop="repayAmt" label="还款总金额（元）" align="center"></el-table-column>
-        <el-table-column prop="status" label="还款状态" align="center">
-          <template slot-scope="scope">
-            <span v-if="scope.row.status == 1">还款中</span>
-            <span v-if="scope.row.status == 2">已结清</span>
-            <span v-if="scope.row.status == 3">已逾期</span>
-          </template>
-        </el-table-column>
         <el-table-column prop="repayPenalty" label="还款罚息" align="center"></el-table-column>
         <el-table-column prop="loanMonth" label="借款分期数" align="center"></el-table-column>
-        <el-table-column prop="rpySeq" label="已还期数" align="center"></el-table-column>
         <el-table-column prop="rpyOrdDt" label="还款时间" align="center"></el-table-column>
-        <el-table-column prop="alreadyTime" label="到期时间" align="center"></el-table-column>
       </el-table>
       <!-- 分页 -->
       <div class="human-pagination">
@@ -121,26 +99,11 @@ export default {
   data() {
     return {
       count: 0,
-      options: [
-        {
-          value: 1,
-          label: "还款中"
-        },
-        {
-          value: 2,
-          label: "已结清"
-        },
-        {
-          value: 3,
-          label: "已逾期"
-        }
-      ],
       searchform: {
         name: "",
         beginDate: "", //申请开始时间
         brwOrdNo: "",
         endDate: "", //至
-        status: "",
         pageIndex: 1, //初始页
         pageSize: 50 //显示当前行的条数
       },
@@ -153,10 +116,7 @@ export default {
           repayAmt: "",
           repayPenalty: "",
           loanMonth: "",
-          rpySeq: "",
           rpyOrdDt: "",
-          alreadyTime: "",
-          status: null
         }
       ]
     };

@@ -6,6 +6,105 @@
         <el-button type="primary" size="mini" style="margin-bottom:10px;">还款信息</el-button>
         <el-row class="table-row">
           <el-col :span="4">
+            <div class="left">姓名</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right"></div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">还款总金额</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right"></div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">还款罚息</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right"></div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">还款服务费</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right"></div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">还款利息</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right"></div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">还款本金</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right"></div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">还款状态</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right"></div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">实际还款金额</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.actRpyAmt}}</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">还款期数</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.rpySeq}}</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">还款时间</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right"></div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">是否逾期</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">
+              <span v-if="data.isOverdue == 0">未逾期</span>
+              <span v-if="data.isOverdue == 1">已逾期</span>
+            </div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">扣款方式</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.acPayTyp}}</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">业务类型</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.buisnessId}}</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">还款结果描述</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.rpyDesc}}</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">还款模式</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">
+              <span v-if="data.rpyMod==0">还全部</span>
+              <span v-if="data.rpyMod==1">还某期</span>
+              <span v-if="data.rpyMod==2">提前清贷</span>
+              <span v-if="data.rpyMod==3">退货</span>
+            </div>
+          </el-col>
+
+          <!-- <el-col :span="4">
             <div class="left">和包贷还款订单号</div>
           </el-col>
           <el-col :span="4">
@@ -24,39 +123,10 @@
             <div class="right">{{data.orgPlanNo}}</div>
           </el-col>
           <el-col :span="4">
-            <div class="left">借款订单模式</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.ordMod}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">还款模式</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">
-              <span v-if="data.rpyMod==0">还全部</span>
-              <span v-if="data.rpyMod==1">还某期</span>
-              <span v-if="data.rpyMod==2">提前清贷</span>
-              <span v-if="data.rpyMod==3">退货</span>
-            </div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">还款期数</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.rpySeq}}</div>
-          </el-col>
-          <el-col :span="4">
             <div class="left">资金方还款计划号</div>
           </el-col>
           <el-col :span="4">
             <div class="right">{{data.orgPlanNo}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">实际还款金额</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.actRpyAmt}}</div>
           </el-col>
           <el-col :span="4">
             <div class="left">资金方用户id</div>
@@ -71,98 +141,17 @@
             <div class="right">{{data.appId}}</div>
           </el-col>
           <el-col :span="4">
-            <div class="left">是否逾期</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">
-              <span v-if="data.isOverdue == 0">未逾期</span>
-              <span v-if="data.isOverdue == 1">已逾期</span>
-            </div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">业务类型</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.buisnessId}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">还款结果描述</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.rpyDesc}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">扣款方式</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.acPayTyp}}</div>
-          </el-col>
-           <el-col :span="4">
             <div class="left"></div>
           </el-col>
           <el-col :span="4">
             <div class="right"></div>
           </el-col>
-        </el-row>
-        <el-button type="primary" size="mini" style="margin-bottom:10px; margin-top:30px;">还款计划集合</el-button>
-        <el-row class="table-row">
           <el-col :span="4">
-            <div class="left">资金方借款订单号</div>
+            <div class="left"></div>
           </el-col>
           <el-col :span="4">
-            <div class="right">{{data.orgOrdNo}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">资金方还款计划号</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.orgPlanNo}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">总期数</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.totSeqCnt}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">当期期数</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.seqNo}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">当期应还日期</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.rpyDay}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">当期还款状态</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">
-              <span v-if="data.rpySts == 0">未还</span>
-              <span v-if="data.rpySts == 1">已还</span>
-            </div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">当期应还账单金额</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.rpyAmt}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">手续服务费</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.serviceFee}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">逾期服务费</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.lateFee}}</div>
-          </el-col>
+            <div class="right"></div>
+          </el-col>-->
         </el-row>
       </el-card>
     </div>
@@ -244,9 +233,6 @@ export default {
 };
 </script>
 <style lang='less' scoped>
-/deep/ .el-card__body {
-  //   padding: 0px;
-}
 .page-detail {
   h1 {
     font-size: 22px;

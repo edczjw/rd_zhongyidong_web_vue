@@ -12,6 +12,12 @@
             <div class="right">{{data.qryCreditId}}</div>
           </el-col>
           <el-col :span="4">
+            <div class="left">总红包额</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.totalBonusamt}}</div>
+          </el-col>
+          <el-col :span="4">
             <div class="left">用户注册手机号</div>
           </el-col>
           <el-col :span="4">
@@ -30,6 +36,20 @@
             <div class="right">{{data.usrIdCard}}</div>
           </el-col>
           <el-col :span="4">
+            <div class="left">用户工作类型</div>
+          </el-col>
+
+          <el-col :span="4">
+            <div class="right">{{data.usrJob}}</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">收入区间</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.inCome}}</div>
+          </el-col>
+
+          <el-col :span="4">
             <div class="left">家庭住址编码</div>
           </el-col>
           <el-col :span="4">
@@ -41,18 +61,7 @@
           <el-col :span="4">
             <div class="right">{{data.address}}</div>
           </el-col>
-          <el-col :span="4">
-            <div class="left">收入区间</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.inCome}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">用户工作类型</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.usrJob}}</div>
-          </el-col>
+
           <el-col :span="4">
             <div class="left">公司名称</div>
           </el-col>
@@ -123,12 +132,7 @@
           <el-col :span="4">
             <div class="right">{{data.usrProvNo}}</div>
           </el-col>
-          <el-col :span="4">
-            <div class="left">总红包额</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.totalBonusAmt}}</div>
-          </el-col>
+
           <el-col :span="4">
             <div class="left">常用邮箱</div>
           </el-col>
@@ -247,47 +251,21 @@
           <el-col :span="4">
             <div class="left">和包分数</div>
           </el-col>
-          <el-col :span="4"  style="border-right:1px solid #ccc;">
+          <el-col :span="4" style="border-right:1px solid #ccc;">
             <div class="right">{{data.hbScore}}</div>
           </el-col>
         </el-row>
       </el-card>
     </div>
-    <!-- <el-row type="flex" justify="center" class="comfirmButton">
-      <el-button type="primary" size="mini" @click="submit">提交</el-button>
-    </el-row>-->
   </div>
 </template>
 
 <script>
-// import { formatDate } from "@/config/utils.js";
 export default {
-  //   filters: {
-  //     formatDate(time) {
-  //       var date = new Date(time);
-  //       return formatDate(date, "yyyy-MM-dd hh:mm:ss");
-  //     }
-  //   },
   data() {
     return {
       data: {},
-      tableData: [
-        {
-          contactName: "某某",
-          contactMblNo: "13132115341",
-          contactRelation: "父子"
-        },
-        {
-          contactName: "某某",
-          contactMblNo: "13132115341",
-          contactRelation: "母子"
-        },
-        {
-          contactName: "某某",
-          contactMblNo: "13132115341",
-          contactRelation: "哥哥"
-        }
-      ]
+      tableData: []
     };
   },
 
@@ -299,25 +277,41 @@ export default {
 
   mounted() {
     var data = {
-      processNo: this.$route.query.processNo
+      usrNo: this.$route.query.usrNo
     };
-    // this.load(data);
+    this.load(data);
   },
 
   methods: {
     load(data) {
       this.$axios({
         method: "post",
-        url: this.$store.state.domain + "",
+        url: this.$store.state.domain + "/manage/hbUserInfo",
         data: data
       }).then(
         response => {
           var res = response.data;
           if (res.code == 0) {
-            if (res.detail.result.agreementUrl) {
-              res.detail.result.agreementUrl = res.detail.result.agreementUrl.split(
-                ","
-              );
+            if (res.detail.result.contactName) {
+              this.tableData.push({
+                contactName: res.detail.result.contactName,
+                contactMblNo: res.detail.result.contactMblNo,
+                contactRelation: res.detail.result.contactRelation
+              });
+            }
+            if (res.detail.result.contactName1) {
+              this.tableData.push({
+                contactName: res.detail.result.contactName1,
+                contactMblNo: res.detail.result.contactMblNo1,
+                contactRelation: res.detail.result.contactRelation1
+              });
+            }
+            if (res.detail.result.contactName2) {
+              this.tableData.push({
+                contactName: res.detail.result.contactName2,
+                contactMblNo: res.detail.result.contactMblNo2,
+                contactRelation: res.detail.result.contactRelation2
+              });
             }
             this.data = res.detail.result;
           }
@@ -337,11 +331,6 @@ export default {
     margin-bottom: 20px;
   }
   .detail-table {
-    // border: 1px solid #f5f5f5;
-    // background: rgba(173, 173, 173, 0.2);
-    // border: 1px solid #666;
-    // padding: 20px;
-    // border-radius: 0px 0px 5px 5px;
     .table-row {
       border: 1px solid #ccc;
       border-bottom: none;

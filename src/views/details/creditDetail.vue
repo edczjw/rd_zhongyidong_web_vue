@@ -6,16 +6,16 @@
         <el-button type="primary" size="mini" style="margin-bottom:10px;">授信信息</el-button>
         <el-row class="table-row">
           <el-col :span="4">
-            <div class="left">订单编号</div>
+            <div class="left">案件编号</div>
           </el-col>
           <el-col :span="4">
-            <div class="right">{{data.creditOrdNo}}</div>
+            <div class="right">{{data.processNo}}</div>
           </el-col>
           <el-col :span="4">
-            <div class="left">用户身份证姓名</div>
+            <div class="left">案件状态</div>
           </el-col>
           <el-col :span="4">
-            <div class="right">{{data.usrIdName}}</div>
+            <div class="right">{{status}}</div>
           </el-col>
           <el-col :span="4">
             <div class="left">授信额度</div>
@@ -24,16 +24,10 @@
             <div class="right">{{data.creditAmt}}</div>
           </el-col>
           <el-col :span="4">
-            <div class="left">授信期限</div>
+            <div class="left">用户身份证姓名</div>
           </el-col>
           <el-col :span="4">
-            <div class="right">{{data.rpySeq}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">授信订单状态</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.creditResult}}</div>
+            <div class="right">{{data.usrIdName}}</div>
           </el-col>
           <el-col :span="4">
             <div class="left">授信额度生效日期</div>
@@ -57,10 +51,16 @@
         <el-button type="primary" size="mini" style="margin-bottom:10px; margin-top:30px;">外部评分</el-button>
         <el-row class="table-row">
           <el-col :span="4">
-            <div class="left">研究院信用购机模型评分总分</div>
+            <div class="left">活体识别分数</div>
           </el-col>
           <el-col :span="4">
-            <div class="right">{{data.creditModScore}}</div>
+            <div class="right">{{data.liveScore}}</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">和包分数</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.hbScore}}</div>
           </el-col>
           <el-col :span="4">
             <div class="left">研究院信用总分数</div>
@@ -81,16 +81,10 @@
             <div class="right">{{data.liveOrgId}}</div>
           </el-col>
           <el-col :span="4">
-            <div class="left">活体识别分数</div>
+            <div class="left">研究院信用购机模型评分总分</div>
           </el-col>
           <el-col :span="4">
-            <div class="right">{{data.liveScore}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">和包分数</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.hbScore}}</div>
+            <div class="right">{{data.creditModScore}}</div>
           </el-col>
         </el-row>
         <el-button type="primary" size="mini" style="margin-bottom:10px; margin-top:30px;">内部评分</el-button>
@@ -125,23 +119,7 @@ export default {
   data() {
     return {
       data: {},
-      tableData: [
-        {
-          contactName: "某某",
-          contactMblNo: "13132115341",
-          contactRelation: "父子"
-        },
-        {
-          contactName: "某某",
-          contactMblNo: "13132115341",
-          contactRelation: "母子"
-        },
-        {
-          contactName: "某某",
-          contactMblNo: "13132115341",
-          contactRelation: "哥哥"
-        }
-      ]
+      status: ""
     };
   },
 
@@ -155,14 +133,15 @@ export default {
     var data = {
       processNo: this.$route.query.processNo
     };
-    // this.load(data);
+    this.status = this.$route.query.status;
+    this.load(data);
   },
 
   methods: {
     load(data) {
       this.$axios({
         method: "post",
-        url: this.$store.state.domain + "",
+        url: this.$store.state.domain + "/manage/hbCreditInfo",
         data: data
       }).then(
         response => {
@@ -185,9 +164,6 @@ export default {
 };
 </script>
 <style lang='less' scoped>
-/deep/ .el-card__body {
-  //   padding: 0px;
-}
 .page-detail {
   h1 {
     font-size: 22px;
@@ -223,8 +199,7 @@ export default {
       .right {
         padding: 0 10px;
       }
-      &:last-child {
-      }
+
       a {
         color: #66b1ff;
         padding: 0px 20px;

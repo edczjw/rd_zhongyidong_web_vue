@@ -4,8 +4,8 @@
       <el-form :model="searchform" ref="searchform" label-width="130px">
         <el-row type="flex" class="human-form">
           <el-col :span="8">
-            <el-form-item label="姓名" prop="name">
-              <el-input size="mini" v-model.trim="searchform.name"></el-input>
+            <el-form-item label="姓名" prop="usrIdName">
+              <el-input size="mini" v-model.trim="searchform.usrIdName"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
@@ -75,21 +75,23 @@
         element-loading-background="rgba(0, 0, 0, 0.8)"
         style="width: 100%; height:100%;"
       >
-        <el-table-column prop="qryCreditId" label="授信流水" align="center"></el-table-column>
+        <el-table-column prop="extSerialNumber" label="授信流水" align="center"></el-table-column>
+        <el-table-column prop="processNo" label="案件号" align="center"></el-table-column>
+        <el-table-column prop="hbUsrNo" label="和包贷用户号" align="center"></el-table-column>
         <el-table-column prop="usrIdName" label="姓名" align="center">
           <template slot-scope="scope">
             <el-button
               type="text"
               size="small"
-              @click="godetail(scope.row.qryCreditId,scope.row.status)"
+              @click="godetail(scope.row.processNo,scope.row.status)"
             >{{scope.row.usrIdName}}</el-button>
           </template>
         </el-table-column>
         <el-table-column prop="status" label="授信状态" align="center">
           <template slot-scope="scope">
-            <span v-if="scope.row.status == 0">处理中</span>
-            <span v-if="scope.row.status == 1">成功</span>
-            <span v-if="scope.row.status == 2">失败</span>
+            <span v-if="scope.row.creditStatus == 'A'">激活</span>
+            <span v-if="scope.row.creditStatus == 'F'">冻结</span>
+            <span v-if="scope.row.creditStatus == 'I'">作废</span>
           </template>
         </el-table-column>
         <el-table-column prop="creditAmt" label="授信额度" align="center"></el-table-column>
@@ -124,21 +126,21 @@ export default {
       count: 0,
       options: [
         {
-          value: 0,
-          label: "处理中"
+          value: "A",
+          label: "激活"
         },
         {
-          value: 1,
-          label: "成功"
+          value: "F",
+          label: "冻结"
         },
 
         {
-          value: 2,
-          label: "失败"
+          value: "I",
+          label: "作废"
         }
       ],
       searchform: {
-        name: "",
+        usrIdName: "",
         effDt: "", //授信额度生效日期
         expDt: "", //授信额度失效日期
         creditLockTm: "", //授信锁定到期时间
@@ -146,17 +148,7 @@ export default {
         pageIndex: 1, //初始页
         pageSize: 50 //显示当前行的条数
       },
-      tableData: [
-        {
-          qryCreditId: "",
-          usrIdName: "lock",
-          status: null,
-          creditAmt:'',
-          effDt:'',
-          expDt:'',
-          creditLockTm:'',
-        }
-      ]
+      tableData: []
     };
   },
 
@@ -167,8 +159,8 @@ export default {
   beforeMount() {},
 
   mounted() {
-    // var data = {};
-    // this.load(data);
+    var data = {};
+    this.load(data);
   },
 
   methods: {
@@ -195,11 +187,24 @@ export default {
     },
     //表单操作
     handleClick() {},
-    godetail(processNo) {
+    godetail(processNo, status) {
+      var text = "";
+      switch (status) {
+        case "U":
+          text = "审核中";
+          break;
+        case "R":
+          text = "申请拒绝";
+          break;
+        default:
+          text = "申请通过";
+          break;
+      }
       this.$router.push({
-        path: "/details/loanDetail",
+        path: "/details/creditDetail",
         query: {
           processNo: processNo,
+          status:text
         }
       });
     },
@@ -207,7 +212,7 @@ export default {
     load(data) {
       this.$axios({
         method: "post",
-        url: this.$store.state.domain + "",
+        url: this.$store.state.domain + "/manage/hbCreditList",
         data: data
       }).then(
         response => {
@@ -234,7 +239,7 @@ export default {
   .el-table th {
     background: rgba(173, 173, 173, 0.3);
     color: rgb(116, 104, 104);
-    font-family: '苹方';
+    font-family: "苹方";
   }
   /deep/ .el-table--border td,
   .el-table--border th,
@@ -243,8 +248,8 @@ export default {
     ~ .el-table__fixed {
     border-right: 1px solid #fff;
   }
-  /deep/ .el-form-item__content{
-      margin-left:130px !important;
+  /deep/ .el-form-item__content {
+    margin-left: 130px !important;
   }
 }
 .page-human {

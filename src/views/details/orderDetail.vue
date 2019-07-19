@@ -3,49 +3,19 @@
     <!-- <h1>借款信息</h1> -->
     <div class="detail-table">
       <el-card>
-        <el-button type="primary" size="mini" style="margin-bottom:10px;">订单信息</el-button>
+        <el-button type="primary" size="mini" style="margin-bottom:10px;">借款信息</el-button>
         <el-row class="table-row">
           <el-col :span="4">
-            <div class="left">和包贷借款订单号</div>
+            <div class="left">案件状态</div>
           </el-col>
           <el-col :span="4">
-            <div class="right">{{data.brwOrdNo}}</div>
+            <div class="right">{{data.status}}</div>
           </el-col>
           <el-col :span="4">
-            <div class="left">和包贷借款订单日期</div>
+            <div class="left">用户姓名</div>
           </el-col>
           <el-col :span="4">
-            <div class="right">{{data.brwOrdDt}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">和包ID</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.hbUsrNo}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">用户手机号</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.mblNo}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">套餐编号</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.productId}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">套餐描述</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.productNm}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">套餐金额</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.pkgAmt}}</div>
+            <div class="right">{{data.name}}</div>
           </el-col>
           <el-col :span="4">
             <div class="left">贷款金额</div>
@@ -60,16 +30,47 @@
             <div class="right">{{data.loanMonth}}</div>
           </el-col>
           <el-col :span="4">
-            <div class="left">商品编号</div>
+            <div class="left">和包贷借款订单号</div>
           </el-col>
           <el-col :span="4">
-            <div class="right">{{data.goodId}}</div>
+            <div class="right">{{data.brwOrdNo}}</div>
           </el-col>
+          <el-col :span="4">
+            <div class="left">和包贷借款订单日期</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.brwOrdDt}}</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">套餐金额</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.pkgAmt}}</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">套餐编号</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.productId}}</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">套餐描述</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.productNm}}</div>
+          </el-col>
+          
           <el-col :span="4">
             <div class="left">商品名称</div>
           </el-col>
           <el-col :span="4">
             <div class="right">{{data.goodNm}}</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">商品编号</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.goodId}}</div>
           </el-col>
           <el-col :span="4">
             <div class="left">渠道编码</div>
@@ -78,10 +79,22 @@
             <div class="right">{{data.appId}}</div>
           </el-col>
           <el-col :span="4">
+            <div class="left">用户手机号</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.mblNo}}</div>
+          </el-col>
+           <el-col :span="4">
             <div class="left">用户借款申请手机串码</div>
           </el-col>
           <el-col :span="4">
             <div class="right">{{data.applyModelCode}}</div>
+          </el-col>
+           <el-col :span="4">
+            <div class="left">身份证用户名</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.usrIdName}}</div>
           </el-col>
           <el-col :span="4">
             <div class="left">用户借款申请IP地址</div>
@@ -89,6 +102,20 @@
           <el-col :span="4">
             <div class="right">{{data.applyIp}}</div>
           </el-col>
+          <el-col :span="4">
+            <div class="left">和包ID</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.hbUsrNo}}</div>
+          </el-col>
+
+          <el-col :span="4">
+            <div class="left">省份账单日</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right"></div>
+          </el-col>
+         
           <el-col :span="4">
             <div class="left">实际借款用户手机号</div>
           </el-col>
@@ -112,24 +139,6 @@
           </el-col>
           <el-col :span="4">
             <div class="right">{{data.actualOrgId}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">省份账单日</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right"></div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left"></div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right"></div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left"></div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.provStgDay}}</div>
           </el-col>
         </el-row>
         <el-button type="primary" size="mini" style="margin-bottom:10px; margin-top:30px;">营业厅信息</el-button>
@@ -190,6 +199,66 @@
           </el-col>
           <el-col :span="4">
             <div class="right"></div>
+          </el-col>
+        </el-row>
+        <el-button type="primary" size="mini" style="margin-bottom:10px; margin-top:30px;">还款计划集合</el-button>
+        <el-row class="table-row">
+          <el-col :span="4">
+            <div class="left">资金方借款订单号</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.orgOrdNo}}</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">资金方还款计划号</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.orgPlanNo}}</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">总期数</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.totSeqCnt}}</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">当期期数</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.seqNo}}</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">当期应还日期</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.rpyDay}}</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">当期还款状态</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">
+              <span v-if="data.rpySts == 0">未还</span>
+              <span v-if="data.rpySts == 1">已还</span>
+            </div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">当期应还账单金额</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.rpyAmt}}</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">手续服务费</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.serviceFee}}</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">逾期服务费</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.lateFee}}</div>
           </el-col>
         </el-row>
       </el-card>
@@ -272,9 +341,6 @@ export default {
 };
 </script>
 <style lang='less' scoped>
-/deep/ .el-card__body {
-  //   padding: 0px;
-}
 .page-detail {
   h1 {
     font-size: 22px;
@@ -309,8 +375,6 @@ export default {
       }
       .right {
         padding: 0 10px;
-      }
-      &:last-child {
       }
       a {
         color: #66b1ff;

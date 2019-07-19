@@ -3,13 +3,20 @@
     <el-card>
       <el-form :model="searchform" ref="searchform" label-width="150px">
         <el-row type="flex" class="human-form">
-          <el-col :span="10">
+          <el-col :span="8">
             <el-form-item label="省份" prop="province">
               <el-input size="mini" v-model.trim="searchform.orgOrdNo"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="10">
-            <el-form-item label="省份账单开始日期" prop="beginDate">
+          <el-col :span="8">
+            <el-form-item label="和包用户编号" prop="broUserNo">
+              <el-input size="mini" v-model.trim="searchform.broUserNo"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="8">
+            <el-form-item label="文件开始日期" prop="beginDate">
               <el-date-picker
                 size="mini"
                 v-model="searchform.beginDate"
@@ -19,8 +26,6 @@
               ></el-date-picker>
             </el-form-item>
           </el-col>
-        </el-row>
-        <el-row>
           <el-col :span="8">
             <el-form-item label="至" prop="endDate">
               <el-date-picker
@@ -55,7 +60,7 @@
         <el-table-column prop="province" label="省份" align="center"></el-table-column>
         <el-table-column prop="TotAmt" label="省放款总金额（元）" align="center"></el-table-column>
         <el-table-column prop="TotCnt" label="省放款总数" align="center"></el-table-column>
-        <el-table-column prop="provStgDay" label="省份账单日" align="center"></el-table-column>
+        <el-table-column prop="provStgDay" label="文件日期" align="center"></el-table-column>
       </el-table>
       <!-- 分页 -->
       <div class="human-pagination">
@@ -99,6 +104,7 @@ export default {
       searchform: {
         name: "",
         beginDate: "", //申请开始时间
+        broUserNo: "",
         brwOrdNo: "",
         endDate: "", //至
         status: "",
@@ -191,7 +197,7 @@ export default {
   .el-table th {
     background: rgba(173, 173, 173, 0.3);
     color: rgb(118, 104, 104);
-    font-family: '苹方';
+    font-family: "苹方";
   }
   /deep/ .el-table--border td,
   .el-table--border th,

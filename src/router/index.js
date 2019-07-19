@@ -55,18 +55,17 @@ export default new Router({
           component: require('../views/details/creditDetail.vue').default,
         },
         {
-          // 订单管理->订单列表
+          // 借款管理->借款列表
           path: '/orderManagement/orderList',
-          name: '订单列表',
+          name: '借款列表',
           component: require('../views/orderManagement/orderList.vue').default,
         },
         {
-          // 订单详情
+          // 借款详情
           path: '/details/orderDetail',
-          name: '订单详情',
+          name: '借款详情',
           component: require('../views/details/orderDetail.vue').default,
         },
-
         {
           // 放款记录->放款列表
           path: '/loanManagement/loanList',

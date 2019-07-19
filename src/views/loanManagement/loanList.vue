@@ -9,13 +9,13 @@
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="姓名" prop="name">
-              <el-input size="mini" v-model.trim="searchform.name"></el-input>
+            <el-form-item label="姓名" prop="usrIdName">
+              <el-input size="mini" v-model.trim="searchform.usrIdName"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="放款状态" prop="status">
-              <el-select size="mini" v-model="searchform.status" placeholder="请选择放款状态">
+            <el-form-item label="放款状态" prop="loanType">
+              <el-select size="mini" v-model="searchform.loanType" placeholder="请选择放款状态">
                 <el-option
                   v-for="item in options"
                   :key="item.value"
@@ -131,11 +131,11 @@ export default {
         }
       ],
       searchform: {
-        name: "",
+        usrIdName: "",
         beginDate: "", //申请开始时间
         brwOrdNo: "",
         endDate: "", //至
-        status: "",
+        loanType: "",
         pageIndex: 1, //初始页
         pageSize: 50 //显示当前行的条数
       },
@@ -191,7 +191,7 @@ export default {
     godetail(processNo) {
       var text = "";
       this.$router.push({
-        path: "/details/orderDetail",
+        path: "/details/loanDetail",
         query: {
           processNo: processNo
         }

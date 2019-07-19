@@ -6,6 +6,31 @@
         <el-button type="primary" size="mini" style="margin-bottom:10px;">订单信息</el-button>
         <el-row class="table-row">
           <el-col :span="4">
+            <div class="left">实际出资方名称</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.orgNm}}</div>
+          </el-col>
+
+          <el-col :span="4">
+            <div class="left">结算金额</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.amt}}</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">办理日期</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.acpDt}}</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="left">用户手机号</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{data.mblNo}}</div>
+          </el-col>
+          <el-col :span="4">
             <div class="left">和包贷借款订单号</div>
           </el-col>
           <el-col :span="4">
@@ -29,36 +54,14 @@
           <el-col :span="4">
             <div class="right">{{data.orgId}}</div>
           </el-col>
-          <el-col :span="4">
-            <div class="left">实际出资方名称</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.orgNm}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">结算金额</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.amt}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">办理日期</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.acpDt}}</div>
-          </el-col>
+
           <el-col :span="4">
             <div class="left">取货码</div>
           </el-col>
           <el-col :span="4">
             <div class="right">{{data.pickCode}}</div>
           </el-col>
-          <el-col :span="4">
-            <div class="left">用户手机号</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.mblNo}}</div>
-          </el-col>
+
           <el-col :span="4">
             <div class="left">机型串码编号</div>
           </el-col>

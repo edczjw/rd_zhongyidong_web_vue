@@ -4,18 +4,18 @@
       <el-form :model="searchform" ref="searchform" label-width="100px">
         <el-row type="flex" class="human-form">
           <el-col :span="8">
-            <el-form-item label="姓名" prop="name">
-              <el-input size="mini" v-model.trim="searchform.name"></el-input>
+            <el-form-item label="姓名" prop="usrIdName">
+              <el-input size="mini" v-model.trim="searchform.usrIdName"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="订单编号" prop="orgOrdNo">
-              <el-input size="mini" v-model.trim="searchform.orgOrdNo"></el-input>
+            <el-form-item label="小贷用户号" prop="usrNo">
+              <el-input size="mini" v-model.trim="searchform.usrNo"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="订单状态" prop="status">
-              <el-select size="mini" v-model="searchform.status" placeholder="请选择订单状态">
+            <el-form-item label="案件状态" prop="status">
+              <el-select size="mini" v-model="searchform.status" placeholder="请选择案件状态">
                 <el-option
                   v-for="item in options"
                   :key="item.value"
@@ -69,28 +69,28 @@
         element-loading-background="rgba(0, 0, 0, 0.8)"
         style="width: 100%; height:100%;"
       >
-        <el-table-column prop="brwOrdNo" label="订单编号" align="center"></el-table-column>
+        <el-table-column prop="hbUsrNo" label="和包用户号" align="center"></el-table-column>
+        <el-table-column prop="processNo" label="案件号" align="center"></el-table-column>
+        <el-table-column prop="usrNo" label="小贷客户号" align="center"></el-table-column>
         <el-table-column prop="usrIdName" label="姓名" align="center">
           <template slot-scope="scope">
             <el-button
               type="text"
               size="small"
-              @click="godetail(scope.row.qryCreditId,scope.row.status)"
+              @click="godetail(scope.row.processNo)"
             >{{scope.row.usrIdName}}</el-button>
           </template>
         </el-table-column>
-        <el-table-column prop="brwAmt" label="贷款金额（元）" align="center"></el-table-column>
+        <el-table-column prop="loanAmt" label="贷款金额" align="center"></el-table-column>
         <el-table-column prop="loanMonth" label="借款分期数" align="center"></el-table-column>
-        <el-table-column prop="loanDay" label="借款期限" align="center"></el-table-column>
         <el-table-column prop="status" label="授信状态" align="center">
           <template slot-scope="scope">
-            <span v-if="scope.row.status == 1">办理中</span>
-            <span v-if="scope.row.status == 2">已取消</span>
-            <span v-if="scope.row.status == 3">已成功</span>
-            <span v-if="scope.row.status == 4">已失效</span>
+            <span v-if="scope.row.status == 'U'">审核中</span>
+            <span v-if="scope.row.status == 'R'">申请拒绝</span>
+            <span v-if="scope.row.status == 'P'">申请通过</span>
           </template>
         </el-table-column>
-        <el-table-column prop="loanTime" label="订单申请时间" align="center"></el-table-column>
+        <el-table-column prop="createTime" label="创建时间" align="center"></el-table-column>
       </el-table>
       <!-- 分页 -->
       <div class="human-pagination">
@@ -119,42 +119,28 @@ export default {
       count: 0,
       options: [
         {
-          value: 1,
-          label: "办理中"
+          value: "U",
+          label: "审核中"
         },
         {
-          value: 2,
-          label: "已取消"
+          value: "R",
+          label: "申请拒绝"
         },
         {
-          value: 3,
-          label: "已成功"
-        },
-        {
-          value: 4,
-          label: "已失效"
+          value: "P",
+          label: "申请通过"
         }
       ],
       searchform: {
-        name: "",
-        beginDate: "", //申请开始时间
-        brwOrdNo: "",
-        endDate: "", //至
+        usrIdName: "",
+        usrNo:'',
         status: "",
+        beginDate: "", //申请开始时间
+        endDate: "", //至
         pageIndex: 1, //初始页
         pageSize: 50 //显示当前行的条数
       },
       tableData: [
-        {
-          brwOrdNo: "",
-          usrIdName: "lock",
-          brwAmt: "",
-          loanMonth: "",
-          qryCreditId: "",
-          loanDay: "",
-          status: null,
-          loanTime: ""
-        }
       ]
     };
   },
@@ -166,8 +152,8 @@ export default {
   beforeMount() {},
 
   mounted() {
-    // var data = {};
-    // this.load(data);
+    var data = {};
+    this.load(data);
   },
 
   methods: {
@@ -207,7 +193,7 @@ export default {
     load(data) {
       this.$axios({
         method: "post",
-        url: this.$store.state.domain + "",
+        url: this.$store.state.domain + "/manage/hbLoanList",
         data: data
       }).then(
         response => {
@@ -234,7 +220,7 @@ export default {
   .el-table th {
     background: rgba(173, 173, 173, 0.3);
     color: rgb(118, 104, 104);
-    font-family: '苹方';
+    font-family: "苹方";
   }
   /deep/ .el-table--border td,
   .el-table--border th,

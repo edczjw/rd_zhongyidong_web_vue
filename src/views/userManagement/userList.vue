@@ -203,6 +203,13 @@ export default {
             this.searchform.pageIndex = res.detail.result.pageIndex;
             this.searchform.pageSize = res.detail.result.pageSize;
           }
+          //失败
+            else {
+              this.$message({
+                message: res.data.msg,
+                type: "error"
+              });
+            }
         },
         error => {}
       );

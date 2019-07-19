@@ -270,7 +270,7 @@ export default {
         },
         {
           value: 6,
-          label: "文件推送在"
+          label: "文件推送中"
         },
         {
           value: 7,

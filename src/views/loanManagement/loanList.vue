@@ -81,7 +81,7 @@
             <el-button
               type="text"
               size="small"
-              @click="godetail(scope.row.hbUsrNo,scope.row.loanType)"
+              @click="godetail(scope.row.hbUsrNo,scope.row.loanType,scope.row.usrIdName)"
             >{{scope.row.usrIdName}}</el-button>
           </template>
         </el-table-column>
@@ -190,7 +190,7 @@ export default {
     },
     //表单操作
     handleClick() {},
-    godetail(hbUsrNo, status) {
+    godetail(hbUsrNo, status,usrIdName) {
       var text = "";
       switch (Number(status)) {
         case 0:
@@ -210,7 +210,8 @@ export default {
         path: "/details/loanDetail",
         query: {
           hbUsrNo: hbUsrNo,
-          status: text
+          status: text,
+          usrIdName:usrIdName
         }
       });
     },

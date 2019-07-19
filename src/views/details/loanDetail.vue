@@ -12,6 +12,12 @@
             <div class="right">{{status}}</div>
           </el-col>
           <el-col :span="4">
+            <div class="left">姓名</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{usrIdName}}</div>
+          </el-col>
+          <el-col :span="4">
             <div class="left">实际出资方名称</div>
           </el-col>
           <el-col :span="4">
@@ -51,7 +57,7 @@
             <div class="left">资金方借款订单号</div>
           </el-col>
           <el-col :span="4">
-            <div class="right">{{data.orgOrdNo}}</div>
+            <div class="right" style="font-size:12px;">{{data.orgOrdNo}}</div>
           </el-col>
           <el-col :span="4">
             <div class="left">实际出资方编号</div>
@@ -125,19 +131,13 @@
 </template>
 
 <script>
-// import { formatDate } from "@/config/utils.js";
 export default {
-  //   filters: {
-  //     formatDate(time) {
-  //       var date = new Date(time);
-  //       return formatDate(date, "yyyy-MM-dd hh:mm:ss");
-  //     }
-  //   },
   data() {
     return {
       data: {},
       hbUsrNo: "",
-      status:''
+      status: "",
+      usrIdName: ""
     };
   },
 
@@ -150,6 +150,7 @@ export default {
   mounted() {
     this.hbUsrNo = this.$route.query.hbUsrNo;
     this.status = this.$route.query.status;
+    this.usrIdName = this.$route.query.usrIdName;
     var data = {
       hbUsrNo: this.$route.query.hbUsrNo
     };
@@ -166,9 +167,8 @@ export default {
         response => {
           var res = response.data;
           if (res.code == 0) {
-           
             this.data = res.detail.result;
-          }else {
+          } else {
             this.$message({
               message: res.msg,
               type: "error"

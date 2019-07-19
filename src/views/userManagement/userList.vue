@@ -208,13 +208,6 @@ export default {
               type: "error"
             });
           }
-          //失败
-            else {
-              this.$message({
-                message: res.data.msg,
-                type: "error"
-              });
-            }
         },
         error => {}
       );

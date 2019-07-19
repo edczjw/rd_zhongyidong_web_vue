@@ -314,6 +314,11 @@ export default {
               });
             }
             this.data = res.detail.result;
+          }else {
+            this.$message({
+              message: res.msg,
+              type: "error"
+            });
           }
         },
         error => {}

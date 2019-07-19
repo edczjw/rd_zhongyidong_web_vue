@@ -6,12 +6,17 @@
         <el-button type="primary" size="mini" style="margin-bottom:10px;">订单信息</el-button>
         <el-row class="table-row">
           <el-col :span="4">
+            <div class="left">放款状态</div>
+          </el-col>
+          <el-col :span="4">
+            <div class="right">{{status}}</div>
+          </el-col>
+          <el-col :span="4">
             <div class="left">实际出资方名称</div>
           </el-col>
           <el-col :span="4">
             <div class="right">{{data.orgNm}}</div>
           </el-col>
-
           <el-col :span="4">
             <div class="left">结算金额</div>
           </el-col>
@@ -34,13 +39,13 @@
             <div class="left">和包贷借款订单号</div>
           </el-col>
           <el-col :span="4">
-            <div class="right">{{data.brwOrdNo}}</div>
+            <div class="right">{{hbUsrNo}}</div>
           </el-col>
           <el-col :span="4">
             <div class="left">和包贷借款订单日期</div>
           </el-col>
           <el-col :span="4">
-            <div class="right">{{data.brwOrdDt}}</div>
+            <div class="right">{{data.mplOrdDt}}</div>
           </el-col>
           <el-col :span="4">
             <div class="left">资金方借款订单号</div>
@@ -73,12 +78,6 @@
           </el-col>
           <el-col :span="4">
             <div class="right">{{data.appId}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left"></div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right"></div>
           </el-col>
         </el-row>
         <el-button type="primary" size="mini" style="margin-bottom:10px; margin-top:30px;">营业厅信息</el-button>
@@ -122,9 +121,6 @@
         </el-row>
       </el-card>
     </div>
-    <!-- <el-row type="flex" justify="center" class="comfirmButton">
-      <el-button type="primary" size="mini" @click="submit">提交</el-button>
-    </el-row>-->
   </div>
 </template>
 
@@ -140,23 +136,8 @@ export default {
   data() {
     return {
       data: {},
-      tableData: [
-        {
-          contactName: "某某",
-          contactMblNo: "13132115341",
-          contactRelation: "父子"
-        },
-        {
-          contactName: "某某",
-          contactMblNo: "13132115341",
-          contactRelation: "母子"
-        },
-        {
-          contactName: "某某",
-          contactMblNo: "13132115341",
-          contactRelation: "哥哥"
-        }
-      ]
+      hbUsrNo: "",
+      status:''
     };
   },
 
@@ -167,28 +148,31 @@ export default {
   beforeMount() {},
 
   mounted() {
+    this.hbUsrNo = this.$route.query.hbUsrNo;
+    this.status = this.$route.query.status;
     var data = {
-      processNo: this.$route.query.processNo
+      hbUsrNo: this.$route.query.hbUsrNo
     };
-    // this.load(data);
+    this.load(data);
   },
 
   methods: {
     load(data) {
       this.$axios({
         method: "post",
-        url: this.$store.state.domain + "",
+        url: this.$store.state.domain + "/manage/LoanSelfInfo",
         data: data
       }).then(
         response => {
           var res = response.data;
           if (res.code == 0) {
-            if (res.detail.result.agreementUrl) {
-              res.detail.result.agreementUrl = res.detail.result.agreementUrl.split(
-                ","
-              );
-            }
+           
             this.data = res.detail.result;
+          }else {
+            this.$message({
+              message: res.msg,
+              type: "error"
+            });
           }
         },
         error => {}

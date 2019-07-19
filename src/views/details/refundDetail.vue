@@ -9,43 +9,49 @@
             <div class="left">姓名</div>
           </el-col>
           <el-col :span="4">
-            <div class="right"></div>
+            <div class="right">{{data.name}}</div>
           </el-col>
           <el-col :span="4">
             <div class="left">还款总金额</div>
           </el-col>
           <el-col :span="4">
-            <div class="right"></div>
+            <div class="right">{{data.repayAmt}}</div>
           </el-col>
           <el-col :span="4">
             <div class="left">还款罚息</div>
           </el-col>
           <el-col :span="4">
-            <div class="right"></div>
+            <div class="right">{{data.repayPenalty}}</div>
           </el-col>
           <el-col :span="4">
             <div class="left">还款服务费</div>
           </el-col>
           <el-col :span="4">
-            <div class="right"></div>
+            <div class="right">{{data.repaySvcFee}}</div>
           </el-col>
           <el-col :span="4">
             <div class="left">还款利息</div>
           </el-col>
           <el-col :span="4">
-            <div class="right"></div>
+            <div class="right">{{data.repayInterest}}</div>
           </el-col>
           <el-col :span="4">
             <div class="left">还款本金</div>
           </el-col>
           <el-col :span="4">
-            <div class="right"></div>
+            <div class="right">{{data.repayPrincipal}}</div>
           </el-col>
           <el-col :span="4">
             <div class="left">还款状态</div>
           </el-col>
           <el-col :span="4">
-            <div class="right"></div>
+            <div class="right">
+              <span v-if="data.status == 'N'">新建</span>
+              <span v-if="data.status == 'M'">合成文件并推送</span>
+              <span v-if="data.status == 'S'">扣款成功</span>
+              <span v-if="data.status == 'F'">-扣款失败</span>
+              <span v-if="data.status == 'P'">处理中</span>
+            </div>
           </el-col>
           <el-col :span="4">
             <div class="left">实际还款金额</div>
@@ -63,34 +69,16 @@
             <div class="left">还款时间</div>
           </el-col>
           <el-col :span="4">
-            <div class="right"></div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">是否逾期</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">
-              <span v-if="data.isOverdue == 0">未逾期</span>
-              <span v-if="data.isOverdue == 1">已逾期</span>
-            </div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">扣款方式</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.acPayTyp}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">业务类型</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.buisnessId}}</div>
+            <div class="right">{{data.startTime}}</div>
           </el-col>
           <el-col :span="4">
             <div class="left">还款结果描述</div>
           </el-col>
           <el-col :span="4">
-            <div class="right">{{data.rpyDesc}}</div>
+            <div class="right">
+              <span v-if="data.rpyResultInf">{{data.rpyResultInf}}</span>
+              <span v-else>空</span>
+            </div>
           </el-col>
           <el-col :span="4">
             <div class="left">还款模式</div>
@@ -103,93 +91,17 @@
               <span v-if="data.rpyMod==3">退货</span>
             </div>
           </el-col>
-
-          <!-- <el-col :span="4">
-            <div class="left">和包贷还款订单号</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.rpyOrdNo}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">和包贷还款订单日期</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.rpyOrdDt}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">资金方还款计划号</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.orgPlanNo}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">资金方还款计划号</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.orgPlanNo}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">资金方用户id</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.orgUsrId}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">渠道编码</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.appId}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left"></div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right"></div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left"></div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right"></div>
-          </el-col>-->
         </el-row>
       </el-card>
     </div>
-    <!-- <el-row type="flex" justify="center" class="comfirmButton">
-      <el-button type="primary" size="mini" @click="submit">提交</el-button>
-    </el-row>-->
   </div>
 </template>
 
 <script>
-// import { formatDate } from "@/config/utils.js";
 export default {
-  //   filters: {
-  //     formatDate(time) {
-  //       var date = new Date(time);
-  //       return formatDate(date, "yyyy-MM-dd hh:mm:ss");
-  //     }
-  //   },
   data() {
     return {
-      data: {},
-      tableData: [
-        {
-          contactName: "某某",
-          contactMblNo: "13132115341",
-          contactRelation: "父子"
-        },
-        {
-          contactName: "某某",
-          contactMblNo: "13132115341",
-          contactRelation: "母子"
-        },
-        {
-          contactName: "某某",
-          contactMblNo: "13132115341",
-          contactRelation: "哥哥"
-        }
-      ]
+      data: {}
     };
   },
 
@@ -201,27 +113,27 @@ export default {
 
   mounted() {
     var data = {
-      processNo: this.$route.query.processNo
+      hbUsrNo: this.$route.query.hbUsrNo
     };
-    // this.load(data);
+    this.load(data);
   },
 
   methods: {
     load(data) {
       this.$axios({
         method: "post",
-        url: this.$store.state.domain + "",
+        url: this.$store.state.domain + "/manage/Repayinfo",
         data: data
       }).then(
         response => {
           var res = response.data;
           if (res.code == 0) {
-            if (res.detail.result.agreementUrl) {
-              res.detail.result.agreementUrl = res.detail.result.agreementUrl.split(
-                ","
-              );
-            }
             this.data = res.detail.result;
+          } else {
+            this.$message({
+              message: res.msg,
+              type: "error"
+            });
           }
         },
         error => {}

@@ -69,21 +69,23 @@
         element-loading-background="rgba(0, 0, 0, 0.8)"
         style="width: 100%; height:100%;"
       >
-        <el-table-column prop="hbUsrNo" label="和包用户号" align="center"></el-table-column>
-        <el-table-column prop="processNo" label="案件号" align="center"></el-table-column>
         <el-table-column prop="usrNo" label="小贷客户号" align="center"></el-table-column>
+        <el-table-column prop="processNo" label="案件号" align="center"></el-table-column>
         <el-table-column prop="usrIdName" label="姓名" align="center">
           <template slot-scope="scope">
             <el-button
               type="text"
               size="small"
-              @click="godetail(scope.row.processNo)"
+              @click="godetail(scope.row.processNo,scope.row.usrIdName)"
             >{{scope.row.usrIdName}}</el-button>
           </template>
         </el-table-column>
+        <el-table-column prop="hbUsrNo" label="和包用户号" align="center"></el-table-column>
+
         <el-table-column prop="loanAmt" label="贷款金额" align="center"></el-table-column>
+
         <el-table-column prop="loanMonth" label="借款分期数" align="center"></el-table-column>
-        <el-table-column prop="status" label="授信状态" align="center">
+        <el-table-column prop="status" label="案件状态" align="center">
           <template slot-scope="scope">
             <span v-if="scope.row.status == 'U'">审核中</span>
             <span v-if="scope.row.status == 'R'">申请拒绝</span>
@@ -180,12 +182,13 @@ export default {
     },
     //表单操作
     handleClick() {},
-    godetail(processNo) {
+    godetail(processNo,usrIdName) {
       var text = "";
       this.$router.push({
         path: "/details/orderDetail",
         query: {
-          processNo: processNo
+          processNo: processNo,
+          usrIdName:usrIdName
         }
       });
     },
@@ -203,6 +206,11 @@ export default {
             this.count = res.detail.result.count;
             this.searchform.pageIndex = res.detail.result.pageIndex;
             this.searchform.pageSize = res.detail.result.pageSize;
+          }else {
+            this.$message({
+              message: res.msg,
+              type: "error"
+            });
           }
         },
         error => {}

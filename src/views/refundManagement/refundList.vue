@@ -4,8 +4,8 @@
       <el-form :model="searchform" ref="searchform" label-width="100px">
         <el-row type="flex" class="human-form">
           <el-col :span="8">
-            <el-form-item label="订单编号" prop="orgOrdNo">
-              <el-input size="mini" v-model.trim="searchform.orgOrdNo"></el-input>
+            <el-form-item label="小贷用户编号" prop="usrNo">
+              <el-input size="mini" v-model.trim="searchform.usrNo"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
@@ -57,22 +57,22 @@
         element-loading-background="rgba(0, 0, 0, 0.8)"
         style="width: 100%; height:100%;"
       >
-        <el-table-column prop="brwOrdNo" label="订单编号" align="center"></el-table-column>
-        <el-table-column prop="usrIdName" label="姓名" align="center">
+        <el-table-column prop="usrNo" label="小贷用户编号" align="center"></el-table-column>
+        <el-table-column prop="name" label="姓名" align="center">
           <template slot-scope="scope">
             <el-button
               type="text"
               size="small"
-              @click="godetail(scope.row.qryCreditId,scope.row.status)"
-            >{{scope.row.usrIdName}}</el-button>
+              @click="godetail(scope.row.hbUsrNo)"
+            >{{scope.row.name}}</el-button>
           </template>
         </el-table-column>
         <el-table-column prop="repayPrincipal" label="还款本金（元）" align="center"></el-table-column>
         <el-table-column prop="repayInterest" label="还款利息（元）" align="center"></el-table-column>
         <el-table-column prop="repayAmt" label="还款总金额（元）" align="center"></el-table-column>
         <el-table-column prop="repayPenalty" label="还款罚息" align="center"></el-table-column>
-        <el-table-column prop="loanMonth" label="借款分期数" align="center"></el-table-column>
-        <el-table-column prop="rpyOrdDt" label="还款时间" align="center"></el-table-column>
+        <el-table-column prop="rpySeq" label="借款分期数" align="center"></el-table-column>
+        <el-table-column prop="startTime" label="还款时间" align="center"></el-table-column>
       </el-table>
       <!-- 分页 -->
       <div class="human-pagination">
@@ -100,25 +100,14 @@ export default {
     return {
       count: 0,
       searchform: {
+        usrNo: "",
         name: "",
         beginDate: "", //申请开始时间
-        brwOrdNo: "",
         endDate: "", //至
         pageIndex: 1, //初始页
         pageSize: 50 //显示当前行的条数
       },
-      tableData: [
-        {
-          brwOrdNo: "",
-          usrIdName: "lock",
-          repayPrincipal: "",
-          repayInterest: "",
-          repayAmt: "",
-          repayPenalty: "",
-          loanMonth: "",
-          rpyOrdDt: "",
-        }
-      ]
+      tableData: []
     };
   },
 
@@ -129,8 +118,8 @@ export default {
   beforeMount() {},
 
   mounted() {
-    // var data = {};
-    // this.load(data);
+    var data = {};
+    this.load(data);
   },
 
   methods: {
@@ -157,12 +146,12 @@ export default {
     },
     //表单操作
     handleClick() {},
-    godetail(processNo) {
+    godetail(hbUsrNo) {
       var text = "";
       this.$router.push({
         path: "/details/refundDetail",
         query: {
-          processNo: processNo
+          hbUsrNo: hbUsrNo
         }
       });
     },
@@ -170,7 +159,7 @@ export default {
     load(data) {
       this.$axios({
         method: "post",
-        url: this.$store.state.domain + "",
+        url: this.$store.state.domain + "/manage/Repaylist",
         data: data
       }).then(
         response => {
@@ -180,6 +169,11 @@ export default {
             this.count = res.detail.result.count;
             this.searchform.pageIndex = res.detail.result.pageIndex;
             this.searchform.pageSize = res.detail.result.pageSize;
+          } else {
+            this.$message({
+              message: res.msg,
+              type: "error"
+            });
           }
         },
         error => {}
@@ -197,7 +191,7 @@ export default {
   .el-table th {
     background: rgba(173, 173, 173, 0.3);
     color: rgb(116, 104, 104);
-    font-family: '苹方';
+    font-family: "苹方";
   }
   /deep/ .el-table--border td,
   .el-table--border th,

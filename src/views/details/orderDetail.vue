@@ -15,7 +15,7 @@
             <div class="left">用户姓名</div>
           </el-col>
           <el-col :span="4">
-            <div class="right">{{data.name}}</div>
+            <div class="right">{{usrIdName}}</div>
           </el-col>
           <el-col :span="4">
             <div class="left">贷款金额</div>
@@ -59,7 +59,7 @@
           <el-col :span="4">
             <div class="right">{{data.productNm}}</div>
           </el-col>
-          
+
           <el-col :span="4">
             <div class="left">商品名称</div>
           </el-col>
@@ -84,17 +84,11 @@
           <el-col :span="4">
             <div class="right">{{data.mblNo}}</div>
           </el-col>
-           <el-col :span="4">
+          <el-col :span="4">
             <div class="left">用户借款申请手机串码</div>
           </el-col>
           <el-col :span="4">
             <div class="right">{{data.applyModelCode}}</div>
-          </el-col>
-           <el-col :span="4">
-            <div class="left">身份证用户名</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.usrIdName}}</div>
           </el-col>
           <el-col :span="4">
             <div class="left">用户借款申请IP地址</div>
@@ -108,14 +102,13 @@
           <el-col :span="4">
             <div class="right">{{data.hbUsrNo}}</div>
           </el-col>
-
           <el-col :span="4">
             <div class="left">省份账单日</div>
           </el-col>
           <el-col :span="4">
-            <div class="right"></div>
+            <div class="right">{{data.provStgDay}}</div>
           </el-col>
-         
+
           <el-col :span="4">
             <div class="left">实际借款用户手机号</div>
           </el-col>
@@ -202,102 +195,42 @@
           </el-col>
         </el-row>
         <el-button type="primary" size="mini" style="margin-bottom:10px; margin-top:30px;">还款计划集合</el-button>
-        <el-row class="table-row">
-          <el-col :span="4">
-            <div class="left">资金方借款订单号</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.orgOrdNo}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">资金方还款计划号</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.orgPlanNo}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">总期数</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.totSeqCnt}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">当期期数</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.seqNo}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">当期应还日期</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.rpyDay}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">当期还款状态</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">
-              <span v-if="data.rpySts == 0">未还</span>
-              <span v-if="data.rpySts == 1">已还</span>
-            </div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">当期应还账单金额</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.rpyAmt}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">手续服务费</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.serviceFee}}</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="left">逾期服务费</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right">{{data.lateFee}}</div>
-          </el-col>
-        </el-row>
+        <el-table
+          :data="data.repayplan"
+          border
+          size="mini"
+          stripe
+          element-loading-text="拼命加载中"
+          element-loading-spinner="el-icon-loading"
+          element-loading-background="rgba(0, 0, 0, 0.8)"
+          style="width: 100%; height:100%;"
+        >
+          <el-table-column prop="orgOrdNo" label="资金方借款订单号" align="center"></el-table-column>
+          <el-table-column prop="orgPlanNo" label="资金方还款计划号" align="center"></el-table-column>
+          <el-table-column prop="totSeqCnt" label="总期数" align="center"></el-table-column>
+          <el-table-column prop="seqNo" label="当期期数" align="center"></el-table-column>
+          <el-table-column prop="rpyDay" label="当期应还日期" align="center"></el-table-column>
+          <el-table-column prop="rpySeq" label="当期还款状态" align="center">
+            <template slot-scope="scope">
+              <span v-if="scope.row.rpySts == 0">未还</span>
+              <span v-if="scope.row.rpySts == 1">已还</span>
+            </template>
+          </el-table-column>
+          <el-table-column prop="rpyAmt" label="当期应还账单金额" align="center"></el-table-column>
+          <el-table-column prop="serviceFee" label="手续服务费" align="center"></el-table-column>
+          <el-table-column prop="lateFee" label="逾期服务费" align="center"></el-table-column>
+        </el-table>
       </el-card>
     </div>
-    <!-- <el-row type="flex" justify="center" class="comfirmButton">
-      <el-button type="primary" size="mini" @click="submit">提交</el-button>
-    </el-row>-->
   </div>
 </template>
 
 <script>
-// import { formatDate } from "@/config/utils.js";
 export default {
-  //   filters: {
-  //     formatDate(time) {
-  //       var date = new Date(time);
-  //       return formatDate(date, "yyyy-MM-dd hh:mm:ss");
-  //     }
-  //   },
   data() {
     return {
       data: {},
-      tableData: [
-        {
-          contactName: "某某",
-          contactMblNo: "13132115341",
-          contactRelation: "父子"
-        },
-        {
-          contactName: "某某",
-          contactMblNo: "13132115341",
-          contactRelation: "母子"
-        },
-        {
-          contactName: "某某",
-          contactMblNo: "13132115341",
-          contactRelation: "哥哥"
-        }
-      ]
+      usrIdName: ""
     };
   },
 
@@ -308,28 +241,30 @@ export default {
   beforeMount() {},
 
   mounted() {
+    this.usrIdName = this.$route.query.usrIdName;
+    console.log(this.usrIdName)
     var data = {
       processNo: this.$route.query.processNo
     };
-    // this.load(data);
+    this.load(data);
   },
 
   methods: {
     load(data) {
       this.$axios({
         method: "post",
-        url: this.$store.state.domain + "",
+        url: this.$store.state.domain + "/manage/hbLoanInfo",
         data: data
       }).then(
         response => {
           var res = response.data;
           if (res.code == 0) {
-            if (res.detail.result.agreementUrl) {
-              res.detail.result.agreementUrl = res.detail.result.agreementUrl.split(
-                ","
-              );
-            }
             this.data = res.detail.result;
+          } else {
+            this.$message({
+              message: res.msg,
+              type: "error"
+            });
           }
         },
         error => {}

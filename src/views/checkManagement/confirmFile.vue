@@ -282,12 +282,6 @@ export default {
         }
       ],
       tableData: [
-        {
-          province: "",
-          status: "",
-          filetype: "",
-          createTime: ""
-        }
       ]
     };
   },

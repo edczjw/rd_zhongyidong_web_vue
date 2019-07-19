@@ -28,11 +28,11 @@
         <use xlink:href="#icon-caidanlan" />
       </svg>
     </p>
-    <p class="right" @click="goForget" titnle="修改密码">
+    <!-- <p class="right" @click="goForget" titnle="修改密码">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-guanlishebei" />
       </svg>
-    </p>
+    </p>-->
   </div>
 </template>
 <script>
@@ -165,7 +165,7 @@ p {
   float: left;
   height: 50px;
   text-indent: 20px;
-  font-family: '宋体';
+  font-family: "宋体";
   font-size: 28px;
   padding: 2px 2px;
   font-weight: bolder;

@@ -87,7 +87,7 @@
             <div class="right">{{data.creditModScore}}</div>
           </el-col>
         </el-row>
-        <el-button type="primary" size="mini" style="margin-bottom:10px; margin-top:30px;">内部评分</el-button>
+        <!-- <el-button type="primary" size="mini" style="margin-bottom:10px; margin-top:30px;">内部评分</el-button>
         <el-row class="table-row">
           <el-col :span="4">
             <div class="left">内部征信分</div>
@@ -98,7 +98,7 @@
           <el-col :span="16">
             <div class="right"></div>
           </el-col>
-        </el-row>
+        </el-row>-->
       </el-card>
     </div>
     <!-- <el-row type="flex" justify="center" class="comfirmButton">
@@ -148,7 +148,7 @@ export default {
           var res = response.data;
           if (res.code == 0) {
             this.data = res.detail.result;
-          }else {
+          } else {
             this.$message({
               message: res.msg,
               type: "error"

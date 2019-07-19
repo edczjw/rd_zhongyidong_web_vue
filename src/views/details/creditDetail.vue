@@ -147,12 +147,12 @@ export default {
         response => {
           var res = response.data;
           if (res.code == 0) {
-            if (res.detail.result.agreementUrl) {
-              res.detail.result.agreementUrl = res.detail.result.agreementUrl.split(
-                ","
-              );
-            }
             this.data = res.detail.result;
+          }else {
+            this.$message({
+              message: res.msg,
+              type: "error"
+            });
           }
         },
         error => {}

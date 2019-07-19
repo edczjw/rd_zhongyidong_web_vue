@@ -4,17 +4,22 @@
       <el-form :model="searchform" ref="searchform" label-width="150px">
         <el-row type="flex" class="human-form">
           <el-col :span="8">
-            <el-form-item label="省份" prop="province">
-              <el-input size="mini" v-model.trim="searchform.orgOrdNo"></el-input>
+            <el-form-item label="和包用户编号" prop="hbUsrNo">
+              <el-input size="mini" v-model.trim="searchform.hbUsrNo"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="和包用户编号" prop="broUserNo">
-              <el-input size="mini" v-model.trim="searchform.broUserNo"></el-input>
+            <el-form-item label="省份" prop="fileProvNo">
+              <el-select size="mini" v-model="searchform.fileProvNo" placeholder="请选择省份">
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                ></el-option>
+              </el-select>
             </el-form-item>
           </el-col>
-        </el-row>
-        <el-row>
           <el-col :span="8">
             <el-form-item label="文件开始日期" prop="beginDate">
               <el-date-picker
@@ -26,6 +31,8 @@
               ></el-date-picker>
             </el-form-item>
           </el-col>
+        </el-row>
+        <el-row>
           <el-col :span="8">
             <el-form-item label="至" prop="endDate">
               <el-date-picker
@@ -57,10 +64,10 @@
         element-loading-background="rgba(0, 0, 0, 0.8)"
         style="width: 100%; height:100%;"
       >
-        <el-table-column prop="province" label="省份" align="center"></el-table-column>
-        <el-table-column prop="TotAmt" label="省放款总金额（元）" align="center"></el-table-column>
-        <el-table-column prop="TotCnt" label="省放款总数" align="center"></el-table-column>
-        <el-table-column prop="provStgDay" label="文件日期" align="center"></el-table-column>
+        <el-table-column prop="fileProvNo" label="省份" align="center"></el-table-column>
+        <el-table-column prop="realTolMoney" label="省放款总金额（元）" align="center"></el-table-column>
+        <el-table-column prop="readCount" label="省放款总数" align="center"></el-table-column>
+        <el-table-column prop="fileDate" label="文件日期" align="center"></el-table-column>
       </el-table>
       <!-- 分页 -->
       <div class="human-pagination">
@@ -89,36 +96,139 @@ export default {
       count: 0,
       options: [
         {
-          value: 1,
-          label: "放款中"
+          label: "北京",
+          value: "01"
         },
         {
-          value: 2,
-          label: "放款失败"
+          label: "天津",
+          value: "02"
         },
         {
-          value: 3,
-          label: "放款成功"
+          label: "河北",
+          value: "03"
+        },
+        {
+          label: "山西",
+          value: "04"
+        },
+        {
+          label: "内蒙古",
+          value: "05"
+        },
+        {
+          label: "辽宁省",
+          value: "06"
+        },
+        {
+          label: "吉林省",
+          value: "07"
+        },
+        {
+          label: "黑龙江省",
+          value: "08"
+        },
+        {
+          label: "上海",
+          value: "09"
+        },
+        {
+          label: "江苏省",
+          value: "10"
+        },
+        {
+          label: "浙江省",
+          value: "11"
+        },
+        {
+          label: "安徽省",
+          value: "12"
+        },
+        {
+          label: "福建省",
+          value: "13"
+        },
+        {
+          label: "江西省",
+          value: "14"
+        },
+        {
+          label: "山东省",
+          value: "15"
+        },
+        {
+          label: "河南省",
+          value: "16"
+        },
+        {
+          label: "湖北省",
+          value: "17"
+        },
+        {
+          label: "湖南省",
+          value: "18"
+        },
+        {
+          label: "广东省",
+          value: "19"
+        },
+        {
+          label: "广西省",
+          value: "20"
+        },
+        {
+          label: "海南省",
+          value: "21"
+        },
+        {
+          label: "四川省",
+          value: "22"
+        },
+        {
+          label: "贵州省",
+          value: "23"
+        },
+        {
+          label: "云南省",
+          value: "24"
+        },
+        {
+          label: "西藏",
+          value: "25"
+        },
+        {
+          label: "陕西省",
+          value: "26"
+        },
+        {
+          label: "甘肃省",
+          value: "27"
+        },
+        {
+          label: "青海省",
+          value: "28"
+        },
+        {
+          label: "宁夏",
+          value: "29"
+        },
+        {
+          label: "新疆",
+          value: "30"
+        },
+        {
+          label: "重庆",
+          value: "31"
         }
       ],
       searchform: {
-        name: "",
+        hbUsrNo: "",
+        fileProvNo: "",
         beginDate: "", //申请开始时间
-        broUserNo: "",
-        brwOrdNo: "",
         endDate: "", //至
-        status: "",
         pageIndex: 1, //初始页
         pageSize: 50 //显示当前行的条数
       },
-      tableData: [
-        {
-          province: "",
-          TotAmt: "",
-          TotCnt: "",
-          provStgDay: "1"
-        }
-      ]
+      tableData: []
     };
   },
 
@@ -129,8 +239,8 @@ export default {
   beforeMount() {},
 
   mounted() {
-    // var data = {};
-    // this.load(data);
+    var data = {};
+    this.load(data);
   },
 
   methods: {
@@ -170,7 +280,7 @@ export default {
     load(data) {
       this.$axios({
         method: "post",
-        url: this.$store.state.domain + "",
+        url: this.$store.state.domain + "/manage/LoanProlist",
         data: data
       }).then(
         response => {
@@ -180,6 +290,11 @@ export default {
             this.count = res.detail.result.count;
             this.searchform.pageIndex = res.detail.result.pageIndex;
             this.searchform.pageSize = res.detail.result.pageSize;
+          } else {
+            this.$message({
+              message: res.msg,
+              type: "error"
+            });
           }
         },
         error => {}

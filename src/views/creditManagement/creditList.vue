@@ -9,8 +9,8 @@
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="授信状态" prop="status">
-              <el-select size="mini" v-model="searchform.status" placeholder="请选择授信状态">
+            <el-form-item label="案件状态" prop="status">
+              <el-select size="mini" v-model="searchform.status" placeholder="请选择案件状态">
                 <el-option
                   v-for="item in options"
                   :key="item.value"
@@ -77,7 +77,6 @@
       >
         <el-table-column prop="extSerialNumber" label="授信流水" align="center"></el-table-column>
         <el-table-column prop="processNo" label="案件号" align="center"></el-table-column>
-        <el-table-column prop="hbUsrNo" label="和包贷用户号" align="center"></el-table-column>
         <el-table-column prop="usrIdName" label="姓名" align="center">
           <template slot-scope="scope">
             <el-button
@@ -87,11 +86,12 @@
             >{{scope.row.usrIdName}}</el-button>
           </template>
         </el-table-column>
-        <el-table-column prop="status" label="授信状态" align="center">
+        <el-table-column prop="hbUsrNo" label="和包贷用户号" align="center"></el-table-column>
+        <el-table-column prop="status" label="案件状态" align="center">
           <template slot-scope="scope">
-            <span v-if="scope.row.creditStatus == 'A'">激活</span>
-            <span v-if="scope.row.creditStatus == 'F'">冻结</span>
-            <span v-if="scope.row.creditStatus == 'I'">作废</span>
+            <span v-if="scope.row.status == 'U'">审核中</span>
+            <span v-if="scope.row.status == 'R'">申请拒绝</span>
+            <span v-if="scope.row.status == 'P'">申请通过</span>
           </template>
         </el-table-column>
         <el-table-column prop="creditAmt" label="授信额度" align="center"></el-table-column>
@@ -126,17 +126,16 @@ export default {
       count: 0,
       options: [
         {
-          value: "A",
-          label: "激活"
+          value: "U",
+          label: "审核中"
         },
         {
-          value: "F",
-          label: "冻结"
+          value: "R",
+          label: "申请拒绝"
         },
-
         {
-          value: "I",
-          label: "作废"
+          value: "P",
+          label: "申请通过"
         }
       ],
       searchform: {
@@ -204,7 +203,7 @@ export default {
         path: "/details/creditDetail",
         query: {
           processNo: processNo,
-          status:text
+          status: text
         }
       });
     },
@@ -222,6 +221,11 @@ export default {
             this.count = res.detail.result.count;
             this.searchform.pageIndex = res.detail.result.pageIndex;
             this.searchform.pageSize = res.detail.result.pageSize;
+          }else {
+            this.$message({
+              message: res.msg,
+              type: "error"
+            });
           }
         },
         error => {}

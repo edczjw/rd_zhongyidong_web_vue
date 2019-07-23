@@ -30,8 +30,8 @@ export default {
     };
   },
   mounted() {
-    // this.getName();
-    // this.tologin(); //判断是否登陆
+    this.getName();
+    this.tologin(); //判断是否登陆
     window.addEventListener("scroll", function(e) {
       // 监听（绑定）滚轮滚动事件
       var t = document.documentElement.scrollTop || document.body.scrollTop;

@@ -73,8 +73,8 @@ export default {
 
       // 登录表单
       loginform: {
-        mobile: "fengkong01",
-        password: "ms002647"
+        mobile: "",
+        password: ""
       },
 
       //输入框验证

@@ -2,15 +2,27 @@
   <div class="page-human">
     <el-card>
       <el-form :model="searchform" ref="searchform" label-width="100px">
-        <el-row type="flex" class="human-form">
+        <el-row class="human-form">
           <el-col :span="8">
-            <el-form-item label="小贷用户编号" prop="usrNo">
-              <el-input size="mini" v-model.trim="searchform.usrNo"></el-input>
+            <el-form-item label="和包用户号" prop="hbUsrNo">
+              <el-input size="mini" v-model.trim="searchform.hbUsrNo"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="姓名" prop="name">
               <el-input size="mini" v-model.trim="searchform.name"></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="还款状态" prop="status">
+              <el-select size="mini" v-model="searchform.status" placeholder="请选择还款状态">
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                ></el-option>
+              </el-select>
             </el-form-item>
           </el-col>
         </el-row>
@@ -57,21 +69,38 @@
         element-loading-background="rgba(0, 0, 0, 0.8)"
         style="width: 100%; height:100%;"
       >
-        <el-table-column prop="usrNo" label="小贷用户编号" align="center"></el-table-column>
+        <el-table-column prop="hbUsrNo" label="和包用户号" align="center"></el-table-column>
         <el-table-column prop="name" label="姓名" align="center">
-          <template slot-scope="scope">
+          <!-- <template slot-scope="scope">
             <el-button
               type="text"
               size="small"
               @click="godetail(scope.row.hbUsrNo)"
             >{{scope.row.name}}</el-button>
-          </template>
+          </template> -->
         </el-table-column>
         <el-table-column prop="repayPrincipal" label="还款本金（元）" align="center"></el-table-column>
         <el-table-column prop="repayInterest" label="还款利息（元）" align="center"></el-table-column>
         <el-table-column prop="repayAmt" label="还款总金额（元）" align="center"></el-table-column>
         <el-table-column prop="repayPenalty" label="还款罚息" align="center"></el-table-column>
-        <el-table-column prop="rpySeq" label="借款分期数" align="center"></el-table-column>
+        <el-table-column prop="rpySeq" label="还款期数" align="center"></el-table-column>
+        <el-table-column prop="rpyMod" label="还款模式" align="center">
+          <template slot-scope="scope">
+            <span v-if="scope.row.rpyMod==1">还某期</span>
+            <span v-if="scope.row.rpyMod==2">提前清贷</span>
+            <span v-if="scope.row.rpyMod==3">退货</span>
+            <span v-if="scope.row.rpyMod==4">资金方主动扣款</span>
+          </template>
+        </el-table-column>
+        <el-table-column prop="status" label="还款状态" align="center">
+          <template slot-scope="scope">
+            <span v-if="scope.row.status=='N'">新建</span>
+            <span v-if="scope.row.status=='M'">合成文件并推送</span>
+            <span v-if="scope.row.status=='S'">扣款成功</span>
+            <span v-if="scope.row.status=='F'">扣款失败</span>
+            <span v-if="scope.row.status=='P'">处理中</span>
+          </template>
+        </el-table-column>
         <el-table-column prop="startTime" label="还款时间" align="center"></el-table-column>
       </el-table>
       <!-- 分页 -->
@@ -99,9 +128,32 @@ export default {
   data() {
     return {
       count: 0,
+      options: [
+        {
+          value: "N",
+          label: "新建"
+        },
+        {
+          value: "M",
+          label: "合成文件并推送"
+        },
+        {
+          value: "S",
+          label: "扣款成功"
+        },
+        {
+          value: "F",
+          label: "扣款失败"
+        },
+        {
+          value: "P",
+          label: "处理中"
+        }
+      ],
       searchform: {
         usrNo: "",
         name: "",
+        status: "",
         beginDate: "", //申请开始时间
         endDate: "", //至
         pageIndex: 1, //初始页

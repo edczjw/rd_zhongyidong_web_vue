@@ -49,7 +49,7 @@
               <span v-if="data.status == 'N'">新建</span>
               <span v-if="data.status == 'M'">合成文件并推送</span>
               <span v-if="data.status == 'S'">扣款成功</span>
-              <span v-if="data.status == 'F'">-扣款失败</span>
+              <span v-if="data.status == 'F'">扣款失败</span>
               <span v-if="data.status == 'P'">处理中</span>
             </div>
           </el-col>

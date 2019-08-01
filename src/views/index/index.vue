@@ -130,25 +130,24 @@ export default {
   z-index: 9999;
   right: 23px;
   bottom: 33px;
-
   display: none;
-
   cursor: pointer;
   -webkit-transition: 0.3s;
   transition: 0.3s;
   -webkit-transition-timing-function: linear; /* Safari and Chrome */
   transition-timing-function: linear;
-  width: 60px;
-  height: 30px;
-  line-height: 30px;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  text-align: center;
   font-size: 14px;
   opacity: 0.4;
-  // border-radius: 100%;
+  border-radius: 100%;
 }
 .bg {
   width: 100%;
   height: 100%;
-  // border-radius: 50%;
+  border-radius: 50%;
   position: absolute;
   top: 0;
   left: 0;

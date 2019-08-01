@@ -7,12 +7,13 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import store from './store'
 import axios from 'axios'
+Vue.prototype.$axios = axios
+
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.prototype.$store = store
-Vue.prototype.$axios = axios
 
 // 跳转后返回顶部
 router.afterEach((to,from,next) => {

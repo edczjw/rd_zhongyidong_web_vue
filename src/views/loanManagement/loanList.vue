@@ -92,8 +92,8 @@
           <template slot-scope="scope">
             <span v-if="scope.row.loanType == 0">未放款</span>
             <span v-if="scope.row.loanType == 1">放款中</span>
-            <span v-if="scope.row.loanType == 2">放款失败</span>
-            <span v-if="scope.row.loanType == 3">放款成功</span>
+            <span v-if="scope.row.loanType == 2">放款成功</span>
+            <span v-if="scope.row.loanType == 3">放款失败</span>
           </template>
         </el-table-column>
         <el-table-column prop="loanDate" label="放款时间" align="center"></el-table-column>

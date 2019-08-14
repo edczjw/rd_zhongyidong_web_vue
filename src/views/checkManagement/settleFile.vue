@@ -16,18 +16,6 @@
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="文件状态" prop="fileStatus">
-              <el-select size="mini" v-model="searchform.fileStatus" placeholder="请选择文件状态">
-                <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-                ></el-option>
-              </el-select>
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
             <el-form-item label="生成时间" prop="beginDate">
               <el-date-picker
                 size="mini"
@@ -70,13 +58,6 @@
         style="width: 100%; height:100%;"
       >
         <el-table-column prop="fileProvNo" label="省份" align="center"></el-table-column>
-        <el-table-column prop="fileStatus" label="文件状态" align="center">
-          <template slot-scope="scope">
-            <span v-if="scope.row.fileStatus == 0">读取中</span>
-            <span v-if="scope.row.fileStatus == 3">读取失败</span>
-            <span v-if="scope.row.fileStatus == 9">读取成功</span>
-          </template>
-        </el-table-column>
         <el-table-column prop="createTime" label="生成时间" align="center"></el-table-column>
         <el-table-column prop label="操作" align="center">
           <template slot-scope="scope">
@@ -115,7 +96,6 @@ export default {
       searchform: {
         beginDate: "",
         endDate: "",
-        fileStatus: "",
         fileProvNo: "",
         pageIndex: 1, //初始页
         pageSize: 50 //显示当前行的条数
@@ -244,22 +224,6 @@ export default {
         {
           label: "重庆",
           value: "31"
-        }
-      ],
-      options: [
-        {
-          value: 0,
-          label: "读取中"
-        },
-
-        {
-          value: 3,
-          label: "读取失败"
-        },
-
-        {
-          value: 9,
-          label: "读取成功"
         }
       ],
       tableData: [

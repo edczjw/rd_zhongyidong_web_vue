@@ -66,7 +66,7 @@
       >
         <el-table-column prop="fileProvNo" label="省份" align="center"></el-table-column>
         <el-table-column prop="realTolMoney" label="省放款总金额（元）" align="center"></el-table-column>
-        <el-table-column prop="readCount" label="省放款总数" align="center"></el-table-column>
+        <el-table-column prop="tolCount" label="省放款总数" align="center"></el-table-column>
         <el-table-column prop="fileDate" label="文件日期" align="center"></el-table-column>
       </el-table>
       <!-- 分页 -->

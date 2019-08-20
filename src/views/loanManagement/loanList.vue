@@ -96,7 +96,7 @@
             <span v-if="scope.row.loanType == 3">放款失败</span>
           </template>
         </el-table-column>
-        <el-table-column prop="loanDate" label="放款时间" align="center"></el-table-column>
+        <el-table-column prop="lstUpdTime" label="放款时间" align="center"></el-table-column>
       </el-table>
       <!-- 分页 -->
       <div class="human-pagination">
@@ -190,7 +190,7 @@ export default {
     },
     //表单操作
     handleClick() {},
-    godetail(hbUsrNo, status,usrIdName) {
+    godetail(hbUsrNo, status, usrIdName) {
       var text = "";
       switch (Number(status)) {
         case 0:
@@ -211,7 +211,7 @@ export default {
         query: {
           hbUsrNo: hbUsrNo,
           status: text,
-          usrIdName:usrIdName
+          usrIdName: usrIdName
         }
       });
     },

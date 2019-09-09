@@ -87,7 +87,7 @@
         </el-table-column>
         <el-table-column prop="usrProvNo" label="省份" align="center"></el-table-column>
         <el-table-column prop="amt" label="放款金额（元）" align="center"></el-table-column>
-        <el-table-column prop="loanMonth" label="借款期限（元）" align="center"></el-table-column>
+        <el-table-column prop="loanMonth" label="借款期限（月）" align="center"></el-table-column>
         <el-table-column prop="loanType" label="放款状态" align="center">
           <template slot-scope="scope">
             <span v-if="scope.row.loanType == 0">未放款</span>

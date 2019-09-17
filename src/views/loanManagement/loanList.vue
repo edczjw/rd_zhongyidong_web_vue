@@ -190,7 +190,7 @@ export default {
     },
     //表单操作
     handleClick() {},
-    godetail(hbUsrNo, status,usrIdName) {
+    godetail(hbUsrNo, status, usrIdName) {
       var text = "";
       switch (Number(status)) {
         case 0:
@@ -211,7 +211,7 @@ export default {
         query: {
           hbUsrNo: hbUsrNo,
           status: text,
-          usrIdName:usrIdName
+          usrIdName: usrIdName
         }
       });
     },

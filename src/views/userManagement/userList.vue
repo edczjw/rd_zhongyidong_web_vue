@@ -239,7 +239,7 @@ export default {
 }
 .page-human {
   .human-table {
-    margin-top: 40px;
+    margin-top: 20px;
   }
   .human-pagination {
     margin-top: 30px;

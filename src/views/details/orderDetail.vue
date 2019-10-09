@@ -9,7 +9,11 @@
             <div class="left">案件状态</div>
           </el-col>
           <el-col :span="4">
-            <div class="right">{{data.status}}</div>
+            <div class="right">
+              <span v-if="data.status == 'U'">审核中</span>
+              <span v-else-if="data.status == 'R'">申请拒绝</span>
+              <span v-else="data.status == 'P'">申请通过</span>
+            </div>
           </el-col>
           <el-col :span="4">
             <div class="left">用户姓名</div>

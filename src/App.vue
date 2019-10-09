@@ -61,7 +61,7 @@ body {
   background: #fff;
 }
 .el-input{
-  width: 220px;
+  width: 220px !important;
 }
 //左侧菜单栏
 .side-container {
@@ -194,9 +194,9 @@ body {
 
   background-color: #f4f8ff;
 }
-.el-date-picker__time-header .el-input{
-  width: 100%;
-}
+// .el-date-picker__time-header .el-input{
+//   width: 100%;
+// }
 //返回顶部
 .gotop {
   position: fixed;

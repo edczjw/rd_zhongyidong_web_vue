@@ -101,7 +101,7 @@
             <span v-if="scope.row.status=='P'">处理中</span>
           </template>
         </el-table-column>
-        <el-table-column prop="startTime" label="还款时间" align="center"></el-table-column>
+        <el-table-column prop="callbackTime" label="还款时间" align="center"></el-table-column>
       </el-table>
       <!-- 分页 -->
       <div class="human-pagination">

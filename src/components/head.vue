@@ -9,23 +9,23 @@
     </div>
     <p class="right" @click="goBack" title="安全退出">
       <svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-qunfenganquantuichu" />
+        <use xlink:href="#icon-tuichu" />
       </svg>
     </p>
     <p class="right" title="用户名">
       <svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-ziyuanxhdpi" />
+        <use xlink:href="#icon-jiqiren" />
       </svg>
       {{this.userName}}
     </p>
     <p class="right" @click="screenfull" title="全屏显示">
       <svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-quanpingxianshi" />
+        <use xlink:href="#icon-quxiaoquanping" />
       </svg>
     </p>
     <p class="right" @click="tabcontrol" title="折叠菜单栏">
       <svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-caidanlan" />
+        <use xlink:href="#icon-zhedieshouqi" />
       </svg>
     </p>
     <!-- <p class="right" @click="goForget" titnle="修改密码">

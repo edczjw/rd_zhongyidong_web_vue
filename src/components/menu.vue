@@ -15,7 +15,7 @@
           <el-submenu index="1">
             <template slot="title">
               <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-yonghuguanli" />
+                <use xlink:href="#icon-icon_yonghuguanli" />
               </svg>
               <span>用户管理</span>
             </template>
@@ -28,7 +28,7 @@
           <el-submenu index="2">
             <template slot="title">
               <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-ziyuan" />
+                <use xlink:href="#icon-shouxinxiangqing-shengyuedu" />
               </svg>
               <span>授信管理</span>
             </template>
@@ -41,7 +41,7 @@
           <el-submenu index="3">
             <template slot="title">
               <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-dingdanguanli" />
+                <use xlink:href="#icon-gerenjiekuanshenqingliucheng" />
               </svg>
               <span>借款管理</span>
             </template>
@@ -54,7 +54,7 @@
           <el-submenu index="4">
             <template slot="title">
               <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-fangkuanxinxi" />
+                <use xlink:href="#icon-fangkuan" />
               </svg>
               <span>放款记录</span>
             </template>
@@ -70,7 +70,7 @@
           <el-submenu index="5">
             <template slot="title">
               <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-huankuanmingxi" />
+                <use xlink:href="#icon-huankuan1" />
               </svg>
               <span>还款记录</span>
             </template>
@@ -83,7 +83,7 @@
           <el-submenu index="6">
             <template slot="title">
               <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-duizhangzhongxin" />
+                <use xlink:href="#icon--gongyingshangduizhang-gai-" />
               </svg>
               <span>对账管理</span>
             </template>
@@ -103,7 +103,7 @@
           <el-submenu index="7">
             <template slot="title">
               <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-duizhangzhongxin" />
+                <use xlink:href="#icon-biaoge3" />
               </svg>
               <span>生成入账操作</span>
             </template>

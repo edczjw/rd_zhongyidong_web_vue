@@ -154,7 +154,7 @@ export default {
                     var res = response.data;
                     if (res.code == 0) {
                         this.$message({
-                          message: '导入成功!',
+                          message: res.msg,
                           type: 'success'
                         });
                     } else {

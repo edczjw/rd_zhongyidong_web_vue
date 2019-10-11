@@ -97,7 +97,7 @@ export default {
 
 //右边部分整个大页面
 .main-ten {
-  margin-left: 200px;
+  margin-left: 240px;
   padding: 25px 50px;
   transition: all 0.5s;
 }
@@ -105,8 +105,8 @@ export default {
 // 右半部分扩张
 .container-width {
   transition: all 0.5s;
-  margin-left: 70px;
-  padding: 25px 70px;
+  margin-left: 65px;
+  padding: 25px 65px;
 }
 
 .wrapper-inner {
@@ -123,6 +123,7 @@ export default {
   vertical-align: -0.9em;
   fill: currentColor;
   padding: 3px 5px;
+  margin-right: 30px;
 }
 /* 返回顶部 */
 .gotop {

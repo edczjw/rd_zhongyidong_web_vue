@@ -66,19 +66,19 @@ body {
 //左侧菜单栏
 .side-container {
   font-size: 14px;
-
+text-align: center !important;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  width: 200px;
+  width: 240px;
 }
 
 //右半部分
 .main-container {
   height: 100%;
-  margin-left: 200px;
+  margin-left: 240px;
 }
 
 /* Table */
@@ -203,7 +203,7 @@ body {
   z-index: 9999;
   right: 33px;
   bottom: 33px;
-
+  font-weight: bolder;
   display: none;
   width: 60px;
   height: 30px;
@@ -223,6 +223,6 @@ body {
   bottom: 33px;
 
   opacity: 1;
-  border: 2px solid rgb(115, 255, 0);
+  border: 2px solid rgb(255, 136, 0);
 }
 </style>

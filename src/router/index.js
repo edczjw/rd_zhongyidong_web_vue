@@ -116,6 +116,12 @@ export default new Router({
           name: '结算文件',
           component: require('../views/checkManagement/settleFile.vue').default,
         },
+        {
+          // 生成借据入账
+          path: '/proloan/inner',
+          name: '生成借据入账',
+          component: require('../views/proloanlistdoinner/proloanlistdoinner.vue').default,
+        },
       ]
     }]
 })

@@ -6,9 +6,9 @@
         <el-menu
           default-active="1"
           class="el-menu-vertical-demo"
-          background-color="rgb(85, 139, 160)"
+          background-color="rgb(0,0, 11)"
           text-color="#fff"
-          active-text-color="purple"
+          active-text-color="orange"
           unique-opened
           :collapse="this.$store.state.isLeftHiden"
         >
@@ -99,6 +99,21 @@
               </router-link>
             </el-menu-item-group>
           </el-submenu>
+
+          <el-submenu index="7">
+            <template slot="title">
+              <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-duizhangzhongxin" />
+              </svg>
+              <span>生成入账操作</span>
+            </template>
+            <el-menu-item-group>
+              <router-link to="/proloan/inner">
+                <el-menu-item index="7-1">生成借据入账</el-menu-item>
+              </router-link>
+            </el-menu-item-group>
+          </el-submenu>
+
         </el-menu>
       </el-col>
     </el-row>
@@ -117,7 +132,6 @@ export default {
 <style scoped  lang="less">
 .el-menu {
   border-color: rgb(211, 212, 212);
-  background: rgb(85, 139, 160);
   border-right: none;
   /deep/ .el-submenu__title i {
     color: #fff;
@@ -126,10 +140,10 @@ export default {
     min-width: 198px;
   }
   /deep/ .el-submenu__title:hover {
-    background: rgb(192, 128, 128) !important;
+    background: rgb(122, 205, 216) !important;
   }
   /deep/ .el-menu-item:hover {
-    background: rgb(194, 121, 121) !important;
+    background: rgb(122, 205, 216) !important;
   }
 }
 
@@ -138,16 +152,16 @@ export default {
   position: fixed;
   font-family: "苹方";
 
-  width: 199px;
+  width: 240px;
   height: 100%;
   transition: all 0.5s;
-  background: rgb(85, 139, 160);
+  background: rgb(0,0, 11)
 }
 
 .side-menu {
   width: 64px;
   transition: all 0.5s;
-  background: rgb(85, 139, 160);
+  background: rgb(0,0, 11)
 }
 
 .el-menu-item-group {

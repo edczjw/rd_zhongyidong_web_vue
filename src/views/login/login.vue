@@ -157,7 +157,7 @@ export default {
                   type: "success"
                 });
                 sessionStorage.setItem("userId", strid); //本地存储用户ID
-                this.$router.push("/home"); //跳转
+                this.$router.push("/mshome"); //跳转
               }
               //失败
               else {

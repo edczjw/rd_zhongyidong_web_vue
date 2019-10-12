@@ -25,6 +25,12 @@ export default new Router({
       // 含有文件夹的文件children
       children: [
         {
+          // 主题主页
+          path: '/mshome',
+          name: '主题主页',
+          component: require('../views/index/mshome.vue').default,
+        },
+        {
           // 修改密码
           path: '/changePassword',
           name: '修改密码',

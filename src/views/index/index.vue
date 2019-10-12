@@ -139,12 +139,13 @@ export default {
   -webkit-transition-timing-function: linear; /* Safari and Chrome */
   transition-timing-function: linear;
   width: 80px;
-  height: 80px;
-  line-height: 80px;
+  height: 50px;
+  line-height: 50px;
   text-align: center;
   font-size: 14px;
   opacity: 0.4;
-  border-radius: 100%;
+  color:blue;
+  border-radius: 15%;
 }
 .bg {
   width: 100%;

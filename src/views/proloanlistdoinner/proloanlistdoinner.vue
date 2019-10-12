@@ -1,5 +1,14 @@
 <template>
   <div class="page-human">
+    <div class="col s12 functionalities">
+      <ul id="breadcrumb" class="breadcrumb">
+        <li></li>
+        <li>
+          生成入账操作
+        </li>
+        <li>生成借据入账</li>
+      </ul>				
+    </div>
     <el-card class="wrapper ">
       <div class="sanjiao"></div>
       <el-card class="time animated fadeInDown">

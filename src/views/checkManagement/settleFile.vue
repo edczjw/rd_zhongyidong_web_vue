@@ -1,5 +1,14 @@
 <template>
   <div class="page-human">
+    <div class="col s12 functionalities">
+      <ul id="breadcrumb" class="breadcrumb">
+        <li></li>
+        <li>
+          对账管理
+        </li>
+        <li>结算文件</li>
+      </ul>				
+    </div>
     <el-card>
       <el-form :model="searchform" ref="searchform" label-width="120px">
         <el-row>

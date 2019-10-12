@@ -45,7 +45,7 @@
             <div class="left">和包贷借款订单号</div>
           </el-col>
           <el-col :span="4">
-            <div class="right">{{hbUsrNo}}</div>
+            <div class="right">{{mplOrdNo}}</div>
           </el-col>
           <el-col :span="4">
             <div class="left">和包贷借款订单日期</div>

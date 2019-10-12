@@ -50,7 +50,70 @@ body {
 #app {
   height: 100%;
 }
-
+.functionalities{
+	  clear: both;
+    top: 0px;
+    position: relative;
+    margin-bottom: 10px;
+}
+.functionalities li{
+    list-style: none;
+    float: left;
+    padding-right: 10px;
+}
+.funcionalidades.container {
+    width: 90%;
+    margin: auto;
+}
+.functionalities ul.breadcrumb{
+    background-color: #ee6e73;
+	  padding: 0 1.5em;
+    clear: both;
+    height: 40px;
+}
+.functionalities ul.breadcrumb li{  
+    background-color: #ee6e73; 
+    border-right: 3px solid #fff;
+    transform: skewX(-25deg);
+    height: 40px;
+    padding: 0 20px;
+    color: #fff;
+    position: relative;
+    top: 0; 
+    line-height: 40px;
+}
+.functionalities ul.breadcrumb li:first-child {
+    display: none;
+}
+.functionalities ul.breadcrumb li:nth-child(2) {
+    border-left: 3px solid #fff;
+}
+.functionalities ul.breadcrumb li:last-child {
+    border-right: none;
+}
+.functionalities ul.breadcrumb li a{	
+	  color: #fff;
+    transform: skewX(25deg);
+    display: inline-block;
+}
+.functionalities ul.breadcrumb li a:hover, .functionalities ul.breadcrumb li a:focus{
+    text-decoration: none;
+    color: #7b4446;
+}
+.functionalities ul.breadcrumb li strong {
+    color: #fff;
+    text-decoration: none;
+    transform: skewX(25deg);
+    display: inline-block;
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+.functionalities ul.breadcrumb i{
+    position: relative;
+    top: 6px;
+    float: none;
+}
 // .wrapper {
 //   height: 100%;
 // }
@@ -204,9 +267,9 @@ body {
   bottom: 33px;
   font-weight: bolder;
   display: none;
-  width: 60px;
-  height: 30px;
-  line-height: 30px;
+  width: 30px;
+  height: 15px;
+  line-height: 15px;
   cursor: pointer;
   -webkit-transition: 0.2s;
   transition: 0.2s;

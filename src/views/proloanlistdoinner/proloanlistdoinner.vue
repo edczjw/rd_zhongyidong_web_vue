@@ -97,12 +97,16 @@ export default {
           }
         })
         .catch(err => {
-          console.warn(err);
+          this.$message({
+              message: '您的账号无此菜单查看权限，谢谢合作',
+              type: "error"
+            });
         });
 
     },
     //下载
     downloadfile() {
+      if(this.searchform.date != ''){
       let data = {
         date:this.searchform.date
       };
@@ -130,8 +134,18 @@ export default {
           }
         })
         .catch(err => {
-          console.warn(err);
+          this.$message({
+              message: '您的账号无此菜单查看权限，谢谢合作',
+              type: "error"
+            });
         });
+        
+      }else{
+        this.$message({
+              message: '请选择日期',
+              type: "error"
+            });
+      }
 
     },
     //上传按钮
@@ -188,7 +202,7 @@ export default {
                   },
                   error => {
                     this.$message({
-                        message: '500错误!',
+                        message: '您的账号无此菜单查看权限，谢谢合作',
                         type: "error"
                       });
                       }

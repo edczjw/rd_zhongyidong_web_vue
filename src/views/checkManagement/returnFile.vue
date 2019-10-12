@@ -318,11 +318,21 @@ export default {
           var res = response.data;
           if (res.code == 0) {
             this.tableData = [];
-            console.log("res", res);
+            if(res.detail.result.pageList){
+              
             this.tableData = res.detail.result.pageList;
             this.count = res.detail.result.count;
             this.searchform.pageIndex = res.detail.result.pageIndex;
             this.searchform.pageSize = res.detail.result.pageSize;
+            }else{
+              this.tableData =[]
+              this.$notify({
+                    message: '搜索失败，无此数据，请重新搜索。',
+                    type: 'warning',
+                    duration:"2000"//持续时间
+                  });
+
+            }
           } else {
             this.$message({
               message: res.msg,
@@ -330,7 +340,12 @@ export default {
             });
           }
         },
-        error => {}
+        error => {
+          this.$message({
+              message: '您的账号无此菜单查看权限，谢谢合作',
+              type: "error"
+            });
+        }
       );
     }
   },

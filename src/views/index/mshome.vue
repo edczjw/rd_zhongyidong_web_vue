@@ -40,7 +40,7 @@ export default {
 }
 #colors{
   opacity: 0;
-  animation: colorIn 5s 8s ease-out forwards;
+  animation: colorIn 4s 7s ease-out forwards;
 }
 @keyframes colorIn {
   from {opacity:0;}

@@ -7,10 +7,12 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import store from './store'
 import axios from 'axios'
+import animate from 'animate.css'
 Vue.prototype.$axios = axios
 
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
+Vue.use(animate)
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.prototype.$store = store

@@ -123,7 +123,8 @@ export default {
   vertical-align: -0.9em;
   fill: currentColor;
   padding: 3px 5px;
-  margin-right: 30px;
+  margin-right: 10px;
+  margin-left:5px;
 }
 /* 返回顶部 */
 .gotop {

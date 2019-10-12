@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view v-if="isRouterAlive"/>
+    <router-view v-if="isRouterAlive" />
   </div>
 </template>
 
@@ -60,13 +60,13 @@ body {
 
   background: #fff;
 }
-.el-input{
+.el-input {
   width: 220px !important;
 }
 //左侧菜单栏
 .side-container {
   font-size: 14px;
-text-align: center !important;
+  text-align: center !important;
   position: fixed;
   top: 0;
   right: 0;
@@ -165,7 +165,6 @@ text-align: center !important;
 //右大半部分
 .container-width {
   margin-left: 0;
-  
 }
 
 .xiangqingtitle {

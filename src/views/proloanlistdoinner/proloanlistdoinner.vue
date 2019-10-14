@@ -12,7 +12,7 @@
     <el-card class="wrapper ">
       <div class="sanjiao"></div>
       <el-card class="time animated fadeInDown">
-        <el-form :model="searchform" ref="searchform" label-width="100px">
+        <el-form :model="searchform" ref="searchform" label-width="90px">
           <el-form-item label="选择时间" prop="date">
             <el-date-picker
               size="mini"
@@ -76,6 +76,7 @@ export default {
   methods: {
     //生成
     profile() {
+      if(this.searchform.date !=''){
       let data = {
         date:this.searchform.date
       };
@@ -102,6 +103,13 @@ export default {
               type: "error"
             });
         });
+        
+      }else{
+        this.$message({
+              message: '请选择日期',
+              type: "error"
+            });
+      }
 
     },
     //下载
@@ -117,21 +125,29 @@ export default {
           emulateJSON: true
         })
         .then(res => {
-          console.log("res", res);
-          let blob = new Blob([res.body], {
-            type: "application/octet-stream"
-          });
-          if (window.navigator.msSaveOrOpenBlob) {
-            navigator.msSaveBlob(blob);
-          } else {
-            let elink = document.createElement("a");
-            elink.download = this.searchform.date + ".xls";
-            elink.style.display = "none";
-            elink.href = URL.createObjectURL(blob);
-            document.body.appendChild(elink);
-            elink.click();
-            document.body.removeChild(elink);
-          }
+          if(res.data.code){
+                 if(res.data.code == 1){
+                   this.$message({
+                          message: res.data.msg,
+                          type: "error"
+                        });
+                    }
+              }else{
+                let blob = new Blob([res.body], {
+                    type: "application/octet-stream"
+                  });
+                  if (window.navigator.msSaveOrOpenBlob) {
+                    navigator.msSaveBlob(blob);
+                  } else {
+                    let elink = document.createElement("a");
+                    elink.download = this.searchform.date + ".xls";
+                    elink.style.display = "none";
+                    elink.href = URL.createObjectURL(blob);
+                    document.body.appendChild(elink);
+                    elink.click();
+                    document.body.removeChild(elink);
+                  }
+              }
         })
         .catch(err => {
           this.$message({
@@ -344,14 +360,14 @@ export default {
     z-index: 2;
     text-align: center;
     margin: 20px auto;
-    width: 30%;
+    width: 60%;
     padding: 30px;
     position: relative;
   }
   .time {
     z-index: 1;
     margin: 20px auto;
-    width: 30%;
+    width: 40%;
     padding: 30px;
     position: relative;
     border: 1px solid #eee;

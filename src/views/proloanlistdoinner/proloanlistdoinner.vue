@@ -140,7 +140,7 @@ export default {
                     navigator.msSaveBlob(blob);
                   } else {
                     let elink = document.createElement("a");
-                    elink.download = this.searchform.date + ".xls";
+                    elink.download = this.searchform.date + 'loanFile' + ".xls";
                     elink.style.display = "none";
                     elink.href = URL.createObjectURL(blob);
                     document.body.appendChild(elink);

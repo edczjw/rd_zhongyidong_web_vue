@@ -23,6 +23,13 @@
             </el-form-item>
           </el-col>
           <el-col :span="8">
+            <el-form-item label="手机号" prop="mblNo">
+              <el-input size="mini" v-model.trim="searchform.mblNo"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="8">
             <el-form-item label="还款状态" prop="status">
               <el-select size="mini" v-model="searchform.status" placeholder="请选择还款状态">
                 <el-option
@@ -34,8 +41,6 @@
               </el-select>
             </el-form-item>
           </el-col>
-        </el-row>
-        <el-row>
           <el-col :span="8">
             <el-form-item label="还款开始时间" prop="beginDate">
               <el-date-picker
@@ -62,11 +67,15 @@
             <el-form-item>
               <el-button size="mini" type="primary" @click="submitForm()">搜索</el-button>
               <el-button size="mini" @click="resetForm('searchform')">重置</el-button>
+              <el-button size="mini" type="success" icon="el-icon-download"
+              @click="download()"
+              >下载</el-button>
             </el-form-item>
           </el-col>
         </el-row>
       </el-form>
     </el-card>
+    
     <el-card class="human-table">
       <el-table
         :data="tableData"
@@ -79,6 +88,7 @@
         style="width: 100%; height:100%;"
       >
         <el-table-column prop="hbUsrNo" label="和包用户号" align="center"></el-table-column>
+        <el-table-column prop="brwOrdNo" label="和包贷借款订单号" align="center"></el-table-column>
         <el-table-column prop="name" label="姓名" align="center">
           <!-- <template slot-scope="scope">
             <el-button
@@ -91,6 +101,15 @@
         <el-table-column prop="repayPrincipal" label="还款本金（元）" align="center"></el-table-column>
         <el-table-column prop="repayInterest" label="还款利息（元）" align="center"></el-table-column>
         <el-table-column prop="repayAmt" label="还款总金额（元）" align="center"></el-table-column>
+
+        <el-table-column prop="mblNo" label="手机号" align="center"></el-table-column>
+        <el-table-column prop="loanTermPrin" label="当期应还本金" align="center"></el-table-column>
+        <el-table-column prop="loanTermInt" label="当期应还利息" align="center"></el-table-column>
+        <el-table-column prop="loanTernSum" label="当期应还总金额" align="center"></el-table-column>
+        <el-table-column prop="remainNotReturnPrin" label="剩余未还本金" align="center"></el-table-column>
+        <el-table-column prop="overdueDate" label="逾期日期" align="center"></el-table-column>
+        <el-table-column prop="overdueDays" label="逾期天数" align="center"></el-table-column>
+
         <el-table-column prop="repayPenalty" label="还款罚息" align="center"></el-table-column>
         <el-table-column prop="rpySeq" label="还款期数" align="center"></el-table-column>
         <el-table-column prop="rpyMod" label="还款模式" align="center">
@@ -160,6 +179,7 @@ export default {
         }
       ],
       searchform: {
+        mblNo:"",
         usrNo: "",
         name: "",
         status: "",
@@ -171,19 +191,41 @@ export default {
       tableData: []
     };
   },
-
-  components: {},
-
-  computed: {},
-
-  beforeMount() {},
-
   mounted() {
     var data = {};
     this.load(data);
   },
-
   methods: {
+    download(){
+      let data = {
+        mblNo:this.searchform.mblNo,
+        usrNo: this.searchform.usrNo,
+        name: this.searchform.name,
+        beginDate: this.searchform.beginDate, 
+        endDate: this.searchform.endDate, 
+        status: this.searchform.status,
+      }
+      this.$axios({
+        method: "post",
+        url: this.$store.state.domain + "/manage/repay/export",
+        data: data
+      }).then(
+        response => {
+          var res = response.data;
+          if (res.code == 0) {
+
+          } else {
+            
+          }
+        },
+        error => {
+          this.$message({
+              message: '您的账号无此菜单查看权限，谢谢合作',
+              type: "error"
+            });
+        }
+      );
+    },
     submitForm() {
       this.load(this.searchform);
     },

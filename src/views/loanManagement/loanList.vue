@@ -31,6 +31,11 @@
         </el-row>
         <el-row>
           <el-col :span="8">
+            <el-form-item label="手机号" prop="mblNo">
+              <el-input size="mini" v-model.trim="searchform.mblNo"></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
             <el-form-item label="放款状态" prop="loanType">
               <el-select size="mini" v-model="searchform.loanType" placeholder="请选择放款状态">
                 <el-option
@@ -66,8 +71,11 @@
           </el-col>
           <el-col :span="8">
             <el-form-item>
-              <el-button size="mini" type="primary" @click="submitForm()">搜索</el-button>
+              <el-button size="mini" type="primary" 
+              @keyup.enter="submitForm"
+              @click="submitForm()">搜索</el-button>
               <el-button size="mini" @click="resetForm('searchform')">重置</el-button>
+              <el-button size="mini" type="success" icon="el-icon-download" @click="download()">下载</el-button>
             </el-form-item>
           </el-col>
         </el-row>
@@ -86,6 +94,15 @@
       >
         <el-table-column prop="hbUsrNo" label="和包用户编号" align="center"></el-table-column>
         <el-table-column prop="usrNo" label="小贷用户编号" align="center"></el-table-column>
+        
+        <el-table-column prop="mblNo" label="手机号" align="center"></el-table-column>
+        <el-table-column prop="usrCityNo" label="地市" align="center"></el-table-column>
+        <el-table-column prop="provStgDay" label="账单日" align="center"></el-table-column>
+        <el-table-column prop="depNm" label="门店名称" align="center"></el-table-column>
+        <el-table-column prop="depId" label="门店编码" align="center"></el-table-column>
+        <el-table-column prop="oprId" label="营业员编号" align="center"></el-table-column>
+        <el-table-column prop="oprMblNo" label="营业员手机号" align="center"></el-table-column>
+
         <el-table-column prop="usrIdName" label="姓名" align="center">
           <template slot-scope="scope">
             <el-button
@@ -152,6 +169,7 @@ export default {
         }
       ],
       searchform: {
+        mblNo:"",
         hbUsrNo: "",
         usrNo: "",
         usrIdName: "",
@@ -177,6 +195,37 @@ export default {
   },
 
   methods: {
+    download(){
+      let data = {
+        mblNo:this.searchform.mblNo,
+        hbUsrNo: this.searchform.hbUsrNo,
+        usrNo: this.searchform.usrNo,
+        usrIdName: this.searchform.usrIdName,
+        beginDate: this.searchform.beginDate, 
+        endDate: this.searchform.endDate, 
+        loanType: this.searchform.loanType,
+      }
+      this.$axios({
+        method: "post",
+        url: this.$store.state.domain + "/manage/loanSelf/export ",
+        data: data
+      }).then(
+        response => {
+          var res = response.data;
+          if (res.code == 0) {
+
+          } else {
+            
+          }
+        },
+        error => {
+          this.$message({
+              message: '您的账号无此菜单查看权限，谢谢合作',
+              type: "error"
+            });
+        }
+      );
+    },
     submitForm() {
       this.load(this.searchform);
     },

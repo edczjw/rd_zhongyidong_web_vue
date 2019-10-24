@@ -103,12 +103,12 @@
         <el-table-column prop="repayAmt" label="还款总金额（元）" align="center"></el-table-column>
 
         <el-table-column prop="mblNo" label="手机号" align="center"></el-table-column>
-        <el-table-column prop="loanTermPrin" label="当期应还本金" align="center"></el-table-column>
-        <el-table-column prop="loanTermInt" label="当期应还利息" align="center"></el-table-column>
-        <el-table-column prop="loanTernSum" label="当期应还总金额" align="center"></el-table-column>
-        <el-table-column prop="remainNotReturnPrin" label="剩余未还本金" align="center"></el-table-column>
-        <el-table-column prop="overdueDate" label="逾期日期" align="center"></el-table-column>
-        <el-table-column prop="overdueDays" label="逾期天数" align="center"></el-table-column>
+        <!-- <el-table-column prop="loanTermPrin" label="当期应还本金" align="center"></el-table-column> -->
+        <!-- <el-table-column prop="loanTermInt" label="当期应还利息" align="center"></el-table-column> -->
+        <!-- <el-table-column prop="loanTernSum" label="当期应还总金额" align="center"></el-table-column> -->
+        <!-- <el-table-column prop="remainNotReturnPrin" label="剩余未还本金" align="center"></el-table-column> -->
+        <!-- <el-table-column prop="overdueDate" label="逾期日期" align="center"></el-table-column> -->
+        <!-- <el-table-column prop="overdueDays" label="逾期天数" align="center"></el-table-column> -->
 
         <el-table-column prop="repayPenalty" label="还款罚息" align="center"></el-table-column>
         <el-table-column prop="rpySeq" label="还款期数" align="center"></el-table-column>
@@ -180,7 +180,7 @@ export default {
       ],
       searchform: {
         mblNo:"",
-        usrNo: "",
+        hbUsrNo: "",
         name: "",
         status: "",
         beginDate: "", //申请开始时间
@@ -197,35 +197,85 @@ export default {
   },
   methods: {
     download(){
-      let data = {
-        mblNo:this.searchform.mblNo,
-        usrNo: this.searchform.usrNo,
-        name: this.searchform.name,
-        beginDate: this.searchform.beginDate, 
-        endDate: this.searchform.endDate, 
-        status: this.searchform.status,
-      }
-      this.$axios({
-        method: "post",
-        url: this.$store.state.domain + "/manage/repay/export",
-        data: data
-      }).then(
-        response => {
-          var res = response.data;
-          if (res.code == 0) {
+      if(this.searchform.mblNo == '' 
+      && this.searchform.name == '' 
+      && this.searchform.hbUsrNo == ''
+      && this.searchform.beginDate == ''
+      && this.searchform.endDate == ''
+      && this.searchform.status == ''){
+        this.$notify({
+          title: '警告',
+          message: '请加上查询条件进行下载',
+          type: 'warning'
+        });
+      }else{
+          this.$confirm('此操作将下载放款文件, 是否继续?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(() => {
+            let data = {
+              mblNo:this.searchform.mblNo,
+              usrNo: this.searchform.hbUsrNo,
+              name: this.searchform.name,
+              beginDate: this.searchform.beginDate, 
+              endDate: this.searchform.endDate, 
+              status: this.searchform.status,
+            }
 
-          } else {
-            
-          }
-        },
-        error => {
-          this.$message({
-              message: '您的账号无此菜单查看权限，谢谢合作',
-              type: "error"
+            this.$axios({
+              method: "get",
+              url: this.$store.state.domain + "/manage/repay/export",
+              params: data,
+              responseType: "blob"
+            })
+            .then(res => {
+              if(res.data.code == 0){
+                this.$message({
+                  message: '文件不存在.',
+                  type: "error"
+                });
+              }else{
+                let blob = new Blob([res.data], {
+                    type: "application/vnd.ms-excel"
+                  });
+                  if (window.navigator.msSaveOrOpenBlob) {
+                    navigator.msSaveBlob(blob);
+                } else {
+                  let elink = document.createElement("a");
+                  elink.style.display = "none";
+                  elink.href = URL.createObjectURL(blob);
+                  elink.setAttribute('download',this.getdate()+'_'+Math.ceil(Math.random()*10)+'.xls')
+                  document.body.appendChild(elink);
+                  elink.click();
+                  document.body.removeChild(elink);
+                }
+              }
+            })
+            .catch(err => {
+              this.$message({
+                  message: '您的账号无此菜单查看权限，谢谢合作',
+                  type: "error"
+                });
             });
-        }
-      );
+            }).catch(() => {
+            this.$message({
+              type: 'info',
+              message: '已取消下载'
+            });          
+          });
+      }
     },
+
+    
+    //获取时间戳
+    getdate() {
+          var now = new Date(),
+              y = now.getFullYear(),
+              m = now.getMonth() + 1,
+              d = now.getDate();
+          return y  + "" + (m < 10 ? "0" + m : m)  + "" + (d < 10 ? "0" + d : d);
+      },
     submitForm() {
       this.load(this.searchform);
     },

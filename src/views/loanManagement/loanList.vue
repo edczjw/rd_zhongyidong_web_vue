@@ -96,7 +96,7 @@
         <el-table-column prop="usrNo" label="小贷用户编号" align="center"></el-table-column>
         
         <el-table-column prop="mblNo" label="手机号" align="center"></el-table-column>
-        <el-table-column prop="usrCityNo" label="地市" align="center"></el-table-column>
+        <!-- <el-table-column prop="usrCityNo" label="地市" align="center"></el-table-column> -->
         <el-table-column prop="provStgDay" label="账单日" align="center"></el-table-column>
         <el-table-column prop="depNm" label="门店名称" align="center"></el-table-column>
         <el-table-column prop="depId" label="门店编码" align="center"></el-table-column>
@@ -146,6 +146,7 @@
 </template>
 
 <script>
+import {formatDate} from '../../common/date.js';
 export default {
   data() {
     return {
@@ -182,13 +183,6 @@ export default {
       tableData: []
     };
   },
-
-  components: {},
-
-  computed: {},
-
-  beforeMount() {},
-
   mounted() {
     var data = {};
     this.load(data);
@@ -196,36 +190,88 @@ export default {
 
   methods: {
     download(){
-      let data = {
-        mblNo:this.searchform.mblNo,
-        hbUsrNo: this.searchform.hbUsrNo,
-        usrNo: this.searchform.usrNo,
-        usrIdName: this.searchform.usrIdName,
-        beginDate: this.searchform.beginDate, 
-        endDate: this.searchform.endDate, 
-        loanType: this.searchform.loanType,
-      }
-      this.$axios({
-        method: "post",
-        url: this.$store.state.domain + "/manage/loanSelf/export ",
-        data: data
-      }).then(
-        response => {
-          var res = response.data;
-          if (res.code == 0) {
-
-          } else {
-            
+      var _that = this;
+      if(this.searchform.mblNo == '' 
+      && this.searchform.hbUsrNo == '' 
+      && this.searchform.usrNo == ''
+      && this.searchform.usrIdName == ''
+      && this.searchform.beginDate == ''
+      && this.searchform.endDate == ''
+      && this.searchform.loanType == ''){
+        this.$notify({
+          title: '警告',
+          message: '请加上查询条件进行下载',
+          type: 'warning'
+        });
+      }else{
+          this.$confirm('此操作将下载放款文件, 是否继续?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(() => {
+            let data = {
+            mblNo:this.searchform.mblNo,
+            hbUsrNo: this.searchform.hbUsrNo,
+            usrNo: this.searchform.usrNo,
+            usrIdName: this.searchform.usrIdName,
+            beginDate: this.searchform.beginDate, 
+            endDate: this.searchform.endDate, 
+            loanType: this.searchform.loanType,
           }
-        },
-        error => {
-          this.$message({
-              message: '您的账号无此菜单查看权限，谢谢合作',
-              type: "error"
+          this.$axios({
+              method: "get",
+              url: this.$store.state.domain + "/manage/loanSelf/export",
+              params: data,
+              responseType: "blob",
+            })
+            .then(res => {
+              if(res.data.code){
+                if(res.data.code == 0){
+                  _that.$message({
+                    message: '下载失败，文件不存在.',
+                    type: "error"
+                  });
+                }
+              }else{
+                  let blob = new Blob([res.data], {
+                      type: "application/vnd.ms-excel"
+                    });
+                  if (window.navigator.msSaveOrOpenBlob) {
+                      navigator.msSaveBlob(blob);
+                      } else {
+                        let elink = document.createElement("a");
+                        elink.style.display = "none";
+                        elink.href = URL.createObjectURL(blob);
+                        elink.setAttribute('download',this.getdate()+'_'+Math.ceil(Math.random()*10)+'.xls')
+                        document.body.appendChild(elink);
+                        elink.click();
+                        document.body.removeChild(elink);
+                      }
+              }
+            })
+            .catch(err => {
+              this.$message({
+                  message: '您的账号无此菜单查看权限，谢谢合作',
+                  type: "error"
+                });
             });
-        }
-      );
+          }).catch(() => {
+            this.$message({
+              type: 'info',
+              message: '已取消'
+            });          
+          });
+      }
     },
+
+    //获取时间戳
+    getdate() {
+          var now = new Date(),
+              y = now.getFullYear(),
+              m = now.getMonth() + 1,
+              d = now.getDate();
+          return y  + "" + (m < 10 ? "0" + m : m)  + "" + (d < 10 ? "0" + d : d);
+      },
     submitForm() {
       this.load(this.searchform);
     },
@@ -313,9 +359,16 @@ export default {
             });
         }
       );
-    }
+    },
   },
-
+  
+    //过滤器，用于格式化时间格式
+    filters: {
+          formatDate(time) {
+              var date = new Date(time);
+              return formatDate(date, 'yyyy-MM-dd hh:mm');
+          }
+    },
   watch: {}
 };
 </script>

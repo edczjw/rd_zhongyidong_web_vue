@@ -9,6 +9,7 @@ import store from './store'
 import axios from 'axios'
 import animate from 'animate.css'
 Vue.prototype.$axios = axios
+import fileDownload from 'js-file-download'
 
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
@@ -28,6 +29,7 @@ new Vue({
   router,
   axios,
   store,
+  fileDownload,
   components: { App },
   template: '<App/>'
 })

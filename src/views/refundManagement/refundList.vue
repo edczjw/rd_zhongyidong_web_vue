@@ -67,9 +67,10 @@
             <el-form-item>
               <el-button size="mini" type="primary" @click="submitForm()">搜索</el-button>
               <el-button size="mini" @click="resetForm('searchform')">重置</el-button>
-              <el-button size="mini" type="success" icon="el-icon-download"
+              <el-button size="mini" type="success"
+              :disabled="delay"
               @click="download()"
-              >下载</el-button>
+              >下载<span v-if="showcount">({{count}}s)</span></el-button>
             </el-form-item>
           </el-col>
         </el-row>
@@ -155,7 +156,10 @@
 export default {
   data() {
     return {
-      count: 0,
+      count: 5,
+      delay:false,
+      timer: null,
+      showcount:false,
       options: [
         {
           value: "N",
@@ -203,7 +207,7 @@ export default {
       && this.searchform.beginDate == ''
       && this.searchform.endDate == ''
       && this.searchform.status == ''){
-        this.$notify({
+        this.$notify({  
           title: '警告',
           message: '请加上查询条件进行下载',
           type: 'warning'
@@ -258,15 +262,35 @@ export default {
                   type: "error"
                 });
             });
+            
+            //延时
+            this.delay = true;
+            this.showcount = true;
+            let _that = this;
+            this.count = 5;
+
+            this.timer = setInterval(() => {
+                if (this.count > 0 && this.count <= 5) {
+                    this.count--;
+                } else {
+                    _that.delay = false
+                    this.showcount = false;
+
+                    this.count = 5;
+                    clearInterval(this.timer); // 清除定时器
+                    this.timer = null;
+                }
+            }, 1000)
+
             }).catch(() => {
             this.$message({
               type: 'info',
               message: '已取消下载'
             });          
           });
+          
       }
     },
-
     
     //获取时间戳
     getdate() {

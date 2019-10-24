@@ -75,7 +75,8 @@
               @keyup.enter="submitForm"
               @click="submitForm()">搜索</el-button>
               <el-button size="mini" @click="resetForm('searchform')">重置</el-button>
-              <el-button size="mini" type="success" icon="el-icon-download" @click="download()">下载</el-button>
+              <el-button size="mini" type="success" :disabled="delay"
+              @click="download()">下载<span v-if="showcount">({{count}}s)</span></el-button>
             </el-form-item>
           </el-col>
         </el-row>
@@ -150,7 +151,10 @@ import {formatDate} from '../../common/date.js';
 export default {
   data() {
     return {
-      count: 0,
+      count: 5,
+      delay:false,
+      timer: null,
+      showcount:false,
       options: [
         {
           value: 0,
@@ -255,6 +259,26 @@ export default {
                   type: "error"
                 });
             });
+
+            
+            //延时
+            this.delay = true;
+            this.showcount = true;
+            let _that = this;
+            this.count = 5;
+
+            this.timer = setInterval(() => {
+                if (this.count > 0 && this.count <= 5) {
+                    this.count--;
+                } else {
+                    _that.delay = false
+                    this.showcount = false;
+
+                    this.count = 5;
+                    clearInterval(this.timer); // 清除定时器
+                    this.timer = null;
+                }
+            }, 1000)
           }).catch(() => {
             this.$message({
               type: 'info',

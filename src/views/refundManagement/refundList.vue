@@ -143,7 +143,7 @@
           :page-sizes="[20,50,100]"
           :page-size="this.searchform.pageSize"
           layout="total, sizes, prev, pager, next"
-          :total="count"
+          :total="countpage"
         >
           <!--这是显示总共有多少数据-->
         </el-pagination>
@@ -157,6 +157,7 @@ export default {
   data() {
     return {
       count: 5,
+      countpage:0,
       delay:false,
       timer: null,
       showcount:false,
@@ -213,7 +214,7 @@ export default {
           type: 'warning'
         });
       }else{
-          this.$confirm('此操作将下载放款文件, 是否继续?', '提示', {
+          this.$confirm('此操作将下载还款文件, 是否继续?', '提示', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
             type: 'warning'
@@ -345,11 +346,12 @@ export default {
             if(res.detail.result.pageList){
               
             this.tableData = res.detail.result.pageList;
-            this.count = res.detail.result.count;
+            this.countpage = res.detail.result.count;
             this.searchform.pageIndex = res.detail.result.pageIndex;
             this.searchform.pageSize = res.detail.result.pageSize;
             }else{
               this.tableData =[]
+              this.countpage = 0;
               this.$notify({
                     message: '搜索失败，无此数据，请重新搜索。',
                     type: 'warning',

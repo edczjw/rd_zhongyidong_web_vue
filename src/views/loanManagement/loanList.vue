@@ -137,7 +137,7 @@
           :page-sizes="[20,50,100]"
           :page-size="this.searchform.pageSize"
           layout="total, sizes, prev, pager, next"
-          :total="count"
+          :total="countpage"
         >
           <!--这是显示总共有多少数据-->
         </el-pagination>
@@ -152,6 +152,7 @@ export default {
   data() {
     return {
       count: 5,
+      countpage:0,
       delay:false,
       timer: null,
       showcount:false,
@@ -357,11 +358,12 @@ export default {
             if(res.detail.result.pageList){
               
             this.tableData = res.detail.result.pageList;
-            this.count = res.detail.result.count;
+            this.countpage = res.detail.result.count;
             this.searchform.pageIndex = res.detail.result.pageIndex;
             this.searchform.pageSize = res.detail.result.pageSize;
             }else{
               this.tableData =[]
+              this.countpage = 0;
               this.$notify({
                     message: '搜索失败，无此数据，请重新搜索。',
                     type: 'warning',

@@ -126,6 +126,10 @@ body {
 .el-input {
   width: 220px !important;
 }
+
+.el-input--small{
+  width: 150px !important;
+}
 //左侧菜单栏
 .side-container {
   font-size: 14px;

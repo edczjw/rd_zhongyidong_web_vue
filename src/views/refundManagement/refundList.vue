@@ -221,7 +221,7 @@ export default {
           }).then(() => {
             let data = {
               mblNo:this.searchform.mblNo,
-              usrNo: this.searchform.hbUsrNo,
+              hbUsrNo: this.searchform.hbUsrNo,
               name: this.searchform.name,
               beginDate: this.searchform.beginDate, 
               endDate: this.searchform.endDate, 

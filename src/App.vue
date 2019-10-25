@@ -124,11 +124,11 @@ body {
   background: #fff;
 }
 .el-input {
-  width: 220px !important;
+  width: 180px !important;
 }
 
 .el-input--small{
-  width: 150px !important;
+  width: 142px !important;
 }
 //左侧菜单栏
 .side-container {

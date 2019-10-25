@@ -188,6 +188,10 @@ export default {
 </script>
 
 <style lang='less' scoped>
+
+.el-input--small {
+  width:230px !important;
+}
 /deep/ .el-form-item__content {
   margin-left: 0px;
 }
